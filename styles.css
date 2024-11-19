@@ -42,10 +42,10 @@ body {
 .welcome-section .container {
     position: relative;
     z-index: 1;
-    margin-top: auto; /* Dodato za vertikalno centriranje */
-    margin-bottom: auto; /* Dodato za vertikalno centriranje */
-    padding-top: 150px; /* Dodatno podešavanje margine ako je potrebno */
-    padding-bottom: 50px; /* Dodatno podešavanje margine ako je potrebno */
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 150px;
+    padding-bottom: 50px;
 }
 
 /* Card Styling */
@@ -54,6 +54,10 @@ body {
     box-shadow: none;
     background: transparent;
     transition: transform 0.3s ease;
+    height: 100%; /* Dodato za uniformnu visinu */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:hover {
@@ -62,13 +66,16 @@ body {
 
 .card-img-top {
     object-fit: contain;
-    height: auto;
+    height: 200px; /* Dodata visina za uniforman prikaz slika */
     max-width: 100%;
     padding: 10px;
 }
 
 .card-body {
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* Card Title Styling */
