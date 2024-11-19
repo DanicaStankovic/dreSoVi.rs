@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
         loadClubs(); // Učitaj klubove iz JSON datoteke
     }
 
+    // Učitaj dresove samo ako smo na stranici dres.html
+    if (window.location.pathname.includes('dres.html')) {
+        loadDres(); // Učitaj dresove za izabrani tim
+    }
+
     // Dodavanje event listener-a na checkout dugme u cart.html
     const checkoutButton = document.querySelector('.checkout_button');
     if (checkoutButton) {
@@ -67,7 +72,7 @@ function generateClubCards(clubs) {
             // Kreirajte HTML za svaku karticu
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="dres.html?team=${club.team}" class="card-link">
+                    <a href="dres.html?team=${club.team}&type=${image.type}" class="card-link">
                         <div class="card">
                             <img src="${image.src}" class="card-img-top" alt="${club.team}">
                             <div class="card-body text-center">
@@ -81,6 +86,40 @@ function generateClubCards(clubs) {
             container.innerHTML += cardHTML;
         });
     });
+}
+
+// Funkcija za učitavanje dresova iz JSON-a na osnovu izabranog tima
+function loadDres() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const team = urlParams.get('team');
+    const type = urlParams.get('type');
+
+    fetch('clubs.json')
+        .then(response => response.json())
+        .then(data => {
+            const club = data.find(c => c.team === team);
+            if (club) {
+                const images = club.images.filter(img => img.type === type);
+                if (images.length > 0) {
+                    document.getElementById('mainImage').src = images[0].src;
+                    const thumbnailsContainer = document.getElementById('thumbnails');
+                    thumbnailsContainer.innerHTML = ''; // Očisti prethodne slike
+                    images.forEach(image => {
+                        const thumbnail = document.createElement('img');
+                        thumbnail.src = image.src;
+                        thumbnail.alt = `${club.team} dres`;
+                        thumbnail.className = 'img-thumbnail m-1';
+                        thumbnail.style.cursor = 'pointer';
+                        thumbnail.onclick = () => {
+                            document.getElementById('mainImage').src = image.src;
+                        };
+                        thumbnailsContainer.appendChild(thumbnail);
+                    });
+                    document.getElementById('productTitle').textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'}`;
+                }
+            }
+        })
+        .catch(error => console.error('Greška pri učitavanju dresova:', error));
 }
 
 // Ažuriranje prikaza korpe
