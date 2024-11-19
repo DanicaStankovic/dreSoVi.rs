@@ -4,7 +4,11 @@ let cart = [];
 // Učitavanje korpe iz localStorage
 document.addEventListener('DOMContentLoaded', function () {
     loadCart(); // Učitaj korpu kada se stranica učita
-    loadClubs(); // Učitaj klubove iz JSON datoteke
+
+    // Provera za učitavanje klubova samo na stranici klubovi.html
+    if (window.location.pathname.includes('klubovi.html')) {
+        loadClubs(); // Učitaj klubove iz JSON datoteke
+    }
 
     // Dodavanje event listener-a na checkout dugme u cart.html
     const checkoutButton = document.querySelector('.checkout_button');
@@ -131,4 +135,4 @@ function saveCart() {
 }
 
 // Učitaj korpu kada se stranica učita
-window.onload = loadCart; // Pozovi loadCart funkciju  
+window.onload = loadCart; // Pozovi loadCart funkciju
