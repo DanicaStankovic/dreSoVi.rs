@@ -103,16 +103,43 @@ body {
 }
 
 /* Thumbnail Styling */
+.thumbnails {
+    display: flex;
+    flex-direction: row; /* Postavi sličice u red */
+    gap: 10px; /* Razmak između sličica */
+    justify-content: center; /* Centriranje sličica */
+    margin-bottom: 20px; /* Razmak ispod sličica */
+}
+
 .thumbnail-img {
     width: 80px; /* Širina thumbnail slike */
-    height: auto;
+    height: 80px; /* Fiksna visina thumbnail slike */
+    object-fit: cover; /* Prilagođava sliku unutar okvira */
     margin: 5px;
     cursor: pointer;
+    border-radius: 5px; /* Zaobljeni uglovi */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Senka */
     transition: transform 0.3s ease;
 }
 
 .thumbnail-img:hover {
     transform: scale(1.1); /* Povećanje na hover */
+}
+
+/* Main Image Styling */
+.main_image_container {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Puna širina */
+    max-width: 500px; /* Maksimalna širina za glavni prikaz */
+    margin-bottom: 20px; /* Razmak ispod glavne slike */
+}
+
+.main_image {
+    width: 100%; /* Puna širina */
+    height: auto; /* Automatska visina */
+    max-height: 500px; /* Maksimalna visina za glavni prikaz */
+    object-fit: contain; /* Zadržava ceo sadržaj slike */
 }
 
 /* Footer Styling */
