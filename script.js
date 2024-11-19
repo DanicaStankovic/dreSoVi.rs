@@ -45,8 +45,8 @@ function loadClubs() {
 function generateClubCards(clubs) {
     const container = document.querySelector('.container .row'); // Selektujte container sa klasom row
     clubs.forEach(club => {
-        // Filtriraj slike koje završavaju sa '1'
-        const filteredImages = club.images.filter(image => image.src.endsWith('1.jpg') || image.src.endsWith('1.png'));
+        // Filtriraj slike koje završavaju sa '1' i podržava različite ekstenzije
+        const filteredImages = club.images.filter(image => /1\.(jpg|png|jpeg|webp)$/i.test(image.src));
         filteredImages.forEach(image => {
             // Kreirajte HTML za svaku karticu
             const cardHTML = `
