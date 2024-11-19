@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadCart(); // Učitaj korpu kada se stranica učita
 
     // Provera za učitavanje klubova samo na stranici klubovi.html
-    if (window.location.pathname.includes('klubovi.html')) {
+    if (window.location.pathname.endsWith('/klubovi.html') || window.location.pathname.endsWith('klubovi.html')) {
         loadClubs(); // Učitaj klubove iz JSON datoteke
     }
 
