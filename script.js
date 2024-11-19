@@ -103,8 +103,8 @@ function loadDres() {
                 if (images.length > 0) {
                     const mainImageElement = document.getElementById('mainImage');
                     const thumbnailsContainer = document.getElementById('thumbnails');
-                        thumbnailsContainer.appendChild(thumbnail);
 
+                    // Proverite da li elementi postoje
                     if (mainImageElement && thumbnailsContainer) {
                         mainImageElement.src = images[0].src;
                         thumbnailsContainer.innerHTML = ''; // Očisti prethodne slike
@@ -125,6 +125,8 @@ function loadDres() {
                         if (productTitle) {
                             productTitle.textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'}`;
                         }
+                    } else {
+                        console.error('Elementi mainImage ili thumbnails nisu pronađeni.');
                     }
                 }
             }
