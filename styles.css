@@ -66,7 +66,7 @@ body {
 
 .card-img-top {
     object-fit: contain;
-    height: 200px; /* Dodata visina za uniforman prikaz slika */
+    height: 330px; /* Dodata visina za uniforman prikaz slika */
     max-width: 100%;
     padding: 10px;
 }
