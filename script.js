@@ -101,21 +101,31 @@ function loadDres() {
             if (club) {
                 const images = club.images.filter(img => img.type === type);
                 if (images.length > 0) {
-                    document.getElementById('mainImage').src = images[0].src;
+                    const mainImageElement = document.getElementById('mainImage');
                     const thumbnailsContainer = document.getElementById('thumbnails');
-                    thumbnailsContainer.innerHTML = ''; // Očisti prethodne slike
-                    images.forEach(image => {
-                        const thumbnail = document.createElement('img');
-                        thumbnail.src = image.src;
-                        thumbnail.alt = `${club.team} dres`;
-                        thumbnail.className = 'img-thumbnail m-1';
-                        thumbnail.style.cursor = 'pointer';
-                        thumbnail.onclick = () => {
-                            document.getElementById('mainImage').src = image.src;
-                        };
                         thumbnailsContainer.appendChild(thumbnail);
-                    });
-                    document.getElementById('productTitle').textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'}`;
+
+                    if (mainImageElement && thumbnailsContainer) {
+                        mainImageElement.src = images[0].src;
+                        thumbnailsContainer.innerHTML = ''; // Očisti prethodne slike
+
+                        images.forEach(image => {
+                            const thumbnail = document.createElement('img');
+                            thumbnail.src = image.src;
+                            thumbnail.alt = `${club.team} dres`;
+                            thumbnail.className = 'img-thumbnail m-1';
+                            thumbnail.style.cursor = 'pointer';
+                            thumbnail.onclick = () => {
+                                mainImageElement.src = image.src;
+                            };
+                            thumbnailsContainer.appendChild(thumbnail);
+                        });
+
+                        const productTitle = document.getElementById('productTitle');
+                        if (productTitle) {
+                            productTitle.textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'}`;
+                        }
+                    }
                 }
             }
         })
