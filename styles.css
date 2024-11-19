@@ -1,0 +1,113 @@
+/* General resets and styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar Styling */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar .nav-link {
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #c9302c;
+}
+
+/* Welcome Section */
+.welcome-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+    height: 100vh;
+}
+
+.welcome-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.welcome-section .container {
+    position: relative;
+    z-index: 1;
+    margin-top: auto; /* Dodato za vertikalno centriranje */
+    margin-bottom: auto; /* Dodato za vertikalno centriranje */
+    padding-top: 150px; /* Dodatno podešavanje margine ako je potrebno */
+    padding-bottom: 50px; /* Dodatno podešavanje margine ako je potrebno */
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    object-fit: contain;
+    height: auto;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.card-body {
+    padding-top: 0;
+}
+
+/* Card Title Styling */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #d9534f;
+    transition: color 0.3s ease;
+}
+
+.card-title:hover {
+    color: #c9302c;
+    text-decoration: underline;
+}
+
+/* Benefits Section */
+.benefits-section .benefit-item {
+    padding: 15px;
+}
+
+.benefits-section .benefit-icon {
+    max-width: 60px;
+    margin-bottom: 10px;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 15px 0;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #c9302c;
+}
