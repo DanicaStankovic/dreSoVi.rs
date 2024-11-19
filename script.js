@@ -5,9 +5,8 @@ let cart = [];
 document.addEventListener('DOMContentLoaded', function () {
     loadCart(); // Učitaj korpu kada se stranica učita
 
-    // Provera za učitavanje klubova samo ako je trenutna stranica tačno "klubovi.html"
-    if (window.location.pathname.endsWith('/klubovi.html') || window.location.pathname.endsWith('klubovi.html')) {
-        loadClubs(); // Učitaj klubove iz JSON datoteke
+    if (window.location.pathname.includes('klubovi.html')) {
+        loadClubs(); // Učitaj klubove iz JSON datoteke samo na stranici klubovi.html
     }
 
     // Dodavanje event listener-a na checkout dugme u cart.html
@@ -41,26 +40,31 @@ function loadClubs() {
         .catch(error => console.error('Greška pri učitavanju klubova:', error));
 }
 
-// Funkcija za generisanje kartica za klubove
+// Funkcija za generisanje kartica za klubove sa filterom za slike koje završavaju na '1'
 function generateClubCards(clubs) {
     const container = document.querySelector('.container .row'); // Selektujte container sa klasom row
 
     clubs.forEach(club => {
-        // Kreirajte HTML za karticu
-        const cardHTML = `
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                <a href="dres.html?team=${club.team}" class="card-link">
-                    <div class="card">
-                        <img src="${club.images[0]}" class="card-img-top" alt="${club.team}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">${club.team.replace('_', ' ').toUpperCase()}</h5>
-                        </div>
+        // Iteriramo kroz slike i prikazujemo samo one koje zadovoljavaju uslov (završavaju se sa '1')
+        club.images.forEach(image => {
+            if (image.match(/1\.(jpg|png|jpeg|png)$/)) { // Prikazujemo samo slike koje se završavaju sa '1'
+                // Kreirajte HTML za karticu
+                const cardHTML = `
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <a href="dres.html?team=${club.team}" class="card-link">
+                            <div class="card">
+                                <img src="${image}" class="card-img-top" alt="${club.team}">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${club.team.replace('_', ' ').toUpperCase()}</h5>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-        `;
-        // Dodajte generisanu karticu u container
-        container.innerHTML += cardHTML;
+                `;
+                // Dodajte generisanu karticu u container
+                container.innerHTML += cardHTML;
+            }
+        });
     });
 }
 

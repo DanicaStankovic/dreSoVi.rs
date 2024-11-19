@@ -1,39 +1,77 @@
 [
-    {
+  {
       "team": "juventus",
-      "images": ["images/klubovi/juventus/juventus_away1.png", "images/klubovi/juventus/juventus_third1.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/juventus/juventus_away1.png",
+          "images/klubovi/juventus/juventus_away2.png",
+          "images/klubovi/juventus/juventus_third1.jpg",
+          "images/klubovi/juventus/juventus_third2.jpg"
+      ]
+  },
+  {
       "team": "boca_juniors",
-      "images": ["images/klubovi/boca_juniors/boca_juniors1.jpg", "images/klubovi/boca_juniors/boca_juniors2.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/boca_juniors/boca_juniors1.jpg",
+          "images/klubovi/boca_juniors/boca_juniors2.jpg"
+      ]
+  },
+  {
       "team": "inter_milan",
-      "images": ["images/klubovi/inter_milan/inter_home1.jpg", "images/klubovi/inter_milan/inter_away1.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/inter_milan/inter_home1.jpg",
+          "images/klubovi/inter_milan/inter_home2.jpg",
+          "images/klubovi/inter_milan/inter_home3.jpg",
+          "images/klubovi/inter_milan/inter_away1.jpg",
+          "images/klubovi/inter_milan/inter_away2.jpg",
+          "images/klubovi/inter_milan/inter_away3.jpg",
+          "images/klubovi/inter_milan/inter_away4.jpg"
+      ]
+  },
+  {
       "team": "lazio",
-      "images": ["images/klubovi/lazio/lazio1.jpg", "images/klubovi/lazio/lazio2.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/lazio/lazio1.jpg",
+          "images/klubovi/lazio/lazio2.jpg"
+      ]
+  },
+  {
       "team": "manchester_united",
-      "images": ["images/klubovi/manchester_united/manchester_united1.jpg", "images/klubovi/manchester_united/manchester_united2.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/manchester_united/manchester_united1.jpg",
+          "images/klubovi/manchester_united/manchester_united2.jpg",
+          "images/klubovi/manchester_united/manchester_united3.jpg"
+      ]
+  },
+  {
       "team": "napoli",
-      "images": ["images/klubovi/napoli/napoli1.jpg", "images/klubovi/napoli/napoli2.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/napoli/napoli1.jpg",
+          "images/klubovi/napoli/napoli2.jpg"
+      ]
+  },
+  {
       "team": "olympiacos",
-      "images": ["images/klubovi/olympiacos/olympiacos_away1.jpg", "images/klubovi/olympiacos/olympiacos_home1.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/olympiacos/olympiacos_away1.jpg",
+          "images/klubovi/olympiacos/olympiacos_away2.jpg",
+          "images/klubovi/olympiacos/olympiacos_home1.jpg",
+          "images/klubovi/olympiacos/olympiacos_home2.jpg"
+      ]
+  },
+  {
       "team": "porto",
-      "images": ["images/klubovi/porto/porto1.jpg", "images/klubovi/porto/porto2.jpg"]
-    },
-    {
+      "images": [
+          "images/klubovi/porto/porto1.jpg",
+          "images/klubovi/porto/porto2.jpg"
+      ]
+  },
+  {
       "team": "real_madrid",
-      "images": ["images/klubovi/real_madrid/real_madrid_away1.jpg", "images/klubovi/real_madrid/real_madrid_away2.jpg"]
-    }
-  ]
-  
+      "images": [
+          "images/klubovi/real_madrid/real_madrid_home1.jpg",
+          "images/klubovi/real_madrid/real_madrid_home2.jpg",
+          "images/klubovi/real_madrid/real_madrid_away1.jpg",
+          "images/klubovi/real_madrid/real_madrid_away2.jpg"
+      ]
+  }
+]
