@@ -113,7 +113,7 @@ function loadDres() {
                             const thumbnail = document.createElement('img');
                             thumbnail.src = image.src;
                             thumbnail.alt = `${club.team} dres`;
-                            thumbnail.className = 'img-thumbnail m-1';
+                            thumbnail.className = 'thumbnail-img m-1';
                             thumbnail.style.cursor = 'pointer';
                             thumbnail.onclick = () => {
                                 mainImageElement.src = image.src;
