@@ -298,6 +298,20 @@ function formatTeamName(teamName) {
     return teamName.replace("_", " ").toUpperCase();
 }
 
+// Funkcija za dobijanje etikete za tip dresa
+function getTypeLabel(type) {
+    switch (type) {
+        case "home":
+            return "Домаћи";
+        case "away":
+            return "Гостујући";
+        case "third":
+            return "Трећи";
+        default:
+            return ""; // Vraća prazan string za nepoznat tip
+    }
+}
+
 // Funkcija za završetak narudžbine
 function checkoutHandler() {
     alert("Поруџбина је потврђена!");
