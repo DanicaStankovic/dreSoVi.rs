@@ -127,7 +127,42 @@ function loadDres() {
                 }
             }
         })
-        .catch(error => console.error('Greška pri učitavanju dresova:', error));
+        .catch(error => console.error('Greška pri učitavanju dresова:', error));
+}
+
+// Funkcija za izbor veličine
+function selectSize(size) {
+    const buttons = document.querySelectorAll('.size-button');
+    buttons.forEach(button => {
+        button.classList.remove('selected');
+    });
+    event.target.classList.add('selected');
+    document.getElementById('sizeWarning').style.display = 'none';
+}
+
+// Funkcija za dodavanje u korpu
+function handleAddToCart() {
+    const size = document.querySelector('.size-button.selected')?.textContent || null;
+    const selectedPrint = document.getElementById('pa_odabir-stampe')?.value || '';
+
+    if (!size || !selectedPrint) {
+        document.getElementById('sizeWarning').style.display = 'block';
+        return;
+    }
+
+    const productName = document.getElementById('productTitle').textContent;
+    const price = parseInt(document.getElementById('productPrice').textContent.replace(/\D/g, ''));
+
+    cart.push({ name: productName, size, price, print: selectedPrint });
+    saveCart();
+
+    const notification = document.getElementById('notification');
+    notification.textContent = "Производ је успешно додат у корпу!";
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
 }
 
 // Ažuriranje prikaza korpe
@@ -159,43 +194,17 @@ function updateCartDisplay() {
     }
 }
 
-// Uklanjanje stavke iz korpe
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartDisplay();
-    saveCart();
-}
-
-// Funkcija za dodavanje proizvoda u korpu
-function addToCart(productName, price, size, isZvezda = false, player = '') {
-    const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || '';
-    if (!size || selectedPrint === '') {
-        document.getElementById("sizeWarning").textContent = "Молимо изаберите величину и штампу.";
-        document.getElementById("sizeWarning").style.display = "block";
-        return;
-    }
-
-    if (isZvezda && !player) {
-        document.getElementById("sizeWarning").textContent = "Молимо изаберите играча за дрес Црвене Звезде.";
-        document.getElementById("sizeWarning").style.display = "block";
-        return;
-    }
-
-    cart.push({ name: productName, price: price, size: size, player: player });
-    saveCart();
-
-    const notification = document.getElementById('notification');
-    notification.textContent = "Производ је успешно додат у корпу.";
-    notification.style.display = "block";
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, 3000);
-}
-
-// Čuvanje korpe u localStorage
+// Funkcija za čuvanje korpe
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Učitaj korpu kada se stranica učita
+// Funkcija za uklanjanje proizvoda iz korpe
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCartDisplay();
+}
+
+// Automatsko učitavanje korpe
 window.onload = loadCart;
