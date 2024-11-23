@@ -62,7 +62,13 @@ function generateClubCards(clubs) {
     }
 
     clubs.forEach(club => {
-        club.images.forEach(image => {
+        // Filtriranje samo slika koje završavaju sa "1"
+        const filteredImages = club.images.filter(image =>
+            image.src.match(/1\.(jpg|png|jpeg|webp)$/i)
+        );
+
+        // Generisanje kartica za filtrirane slike
+        filteredImages.forEach(image => {
             const typeLabel = getTypeLabel(image.type);
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
