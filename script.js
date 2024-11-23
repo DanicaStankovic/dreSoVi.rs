@@ -63,7 +63,6 @@ function generateClubCards(clubs) {
     }
 
     clubs.forEach(club => {
-        // Filtriranje samo slika koje završavaju sa "1"
         const filteredImages = club.images.filter(image =>
             image.src.match(/1\.(jpg|png|jpeg|webp)$/i)
         );
@@ -198,17 +197,6 @@ function updatePrice() {
 
     if (priceElement) {
         priceElement.textContent = `Цена: ${formatPrice(price)} РСД`;
-    }
-}
-
-// Funkcija za izbor veličine
-function selectSize(size) {
-    const buttons = document.querySelectorAll(".size-button");
-    buttons.forEach(button => button.classList.remove("selected"));
-    event.target.classList.add("selected");
-    const sizeWarning = document.getElementById("sizeWarning");
-    if (sizeWarning) {
-        sizeWarning.style.display = "none";
     }
 }
 
