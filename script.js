@@ -228,8 +228,7 @@ function handleAddToCart() {
     }
 
     const productName = document.getElementById("productTitle").textContent;
-    const priceText = document.getElementById("productPrice").textContent;
-    const price = parseFloat(priceText.replace(/[^\d,]/g, "").replace(",", "."));
+    const price = parsePrice(document.getElementById("productPrice").textContent);
 
     cart.push({ name: productName, size, price, print: selectedPrint });
     saveCart();
@@ -286,10 +285,12 @@ function saveCart() {
 
 // Funkcija za formatiranje cena
 function formatPrice(price) {
-    return Number(price)
-        .toFixed(2)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        .replace(".", ",");
+    return price.toLocaleString("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+// Funkcija za parsiranje cena iz stringa
+function parsePrice(priceString) {
+    return parseFloat(priceString.replace(/\./g, "").replace(",", "."));
 }
 
 // Funkcija za formatiranje imena tima
