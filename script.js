@@ -73,7 +73,7 @@ function generateClubCards(clubs) {
                         <div class="card">
                             <img src="${image.src}" class="card-img-top" alt="${club.team}">
                             <div class="card-body text-center">
-                                <h5 class="card-title">${club.team.replace('_', ' ').toUpperCase()} - ${typeLabel}</h5>
+                                <h5 class="card-title">${club.team.replace('_', ' ').toUpperCase()} - ${typeLabel} (${image.season || 'Непозната сезона'})</h5>
                             </div>
                         </div>
                     </a>
@@ -118,7 +118,8 @@ function loadDres() {
 
                         const productTitle = document.getElementById('productTitle');
                         if (productTitle) {
-                            productTitle.textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'}`;
+                            const season = images[0].season || 'Непозната сезона'; // Default ako nema sezone
+                            productTitle.textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'} (${season})`;
                         }
                     } else {
                         console.error('Elementi mainImage ili thumbnails nisu pronađeni.');
