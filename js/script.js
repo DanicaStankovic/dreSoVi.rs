@@ -40,9 +40,21 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadCart() {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
-        cart = JSON.parse(storedCart);
+        try {
+            cart = JSON.parse(storedCart);
+            cart.forEach(item => {
+                if (!item.price || isNaN(item.price)) {
+                    console.error("Неисправан артикал у корпи:", item);
+                    item.price = 0; // Постави подразумевану цену ако није исправна
+                }
+            });
+        } catch (error) {
+            console.error("Грешка при парсирању корпе из localStorage:", error);
+            cart = [];
+        }
     }
 }
+
 
 // Функција за учитавање и приказивање клубова из JSON-а
 function loadClubs() {
@@ -358,18 +370,38 @@ function checkoutHandler() {
 // Funkcija za prikaz korpe
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
-    if (!cartItemsContainer) return;
+    if (!cartItemsContainer) {
+        console.error("Контенер за ставке корпе није пронађен.");
+        return;
+    }
 
-    cartItemsContainer.innerHTML = "";
+    cartItemsContainer.innerHTML = ""; // Очисти претходне ставке
     let total = 0;
 
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p class='text-center'>Ваша корпа је празна.</p>";
+        document.getElementById("totalPrice").textContent = "Укупно: 0 РСД";
+        return;
+    }
+
     cart.forEach((item, index) => {
+        if (!item.price || isNaN(item.price)) {
+            console.error(`Производ у корпи има неважећу цену:`, item);
+            item.price = 0;
+        }
+
         total += item.price;
         const itemDiv = document.createElement("div");
+        itemDiv.className = "col-12 mb-3";
         itemDiv.innerHTML = `
-            <h4>${item.name} - Величина: ${item.size}</h4>
-            <p>Цена: ${formatPrice(item.price)} РСД</p>
-            <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Уклони</button>
+            <div class="d-flex justify-content-between align-items-center border p-3">
+                <div>
+                    <h5>${item.name}</h5>
+                    <p>Величина: ${item.size}</p>
+                    <p>Цена: ${formatPrice(item.price)} РСД</p>
+                </div>
+                <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Уклони</button>
+            </div>
         `;
         cartItemsContainer.appendChild(itemDiv);
     });
@@ -378,6 +410,6 @@ function updateCartDisplay() {
     if (totalPriceElement) {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
-
-    updateCartCount();
 }
+
+
