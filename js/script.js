@@ -1,11 +1,11 @@
-// Inicijalizacija korpe
+// Иницијација корпе
 let cart = [];
 
-// Konstantne vrednosti za cene
+// Константне вредности за цене
 const BASE_PRICE = 9990;
 const USLUZNA_STAMPA_PRICE = 11490;
 
-// Dostupne veličine i opcije štampe
+// Доступне величине и опције штампе
 const SIZE_OPTIONS = ["XS", "S", "M", "L", "XL", "XXL"];
 const PRINT_OPTIONS = [
     { value: "", text: "Одаберите опцију" },
@@ -13,11 +13,11 @@ const PRINT_OPTIONS = [
     { value: "usluzna-stampa", text: "Услужна штампа" },
 ];
 
-// Učitavanje korpe iz localStorage
+// Учитавање корпе из localStorage
 document.addEventListener("DOMContentLoaded", function () {
     loadCart();
 
-    // Učitaj stranice na osnovu URL-a
+    // Учитај странице на основу URL-а
     const path = window.location.pathname;
 
     if (path.includes("klubovi.html")) {
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutButton.addEventListener("click", checkoutHandler);
     }
 
-    updateCartCount(); // Ažuriraj broj proizvoda u korpi prilikom inicijalizacije
+    updateCartCount(); // Ажурирај број производа у корпи приликом иницијализације
 });
 
-// Funkcija za učitavanje korpe iz localStorage
+// Функција за учитавање корпе из localStorage
 function loadCart() {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -44,44 +44,46 @@ function loadCart() {
     }
 }
 
-// Funkcija za učitavanje i prikazivanje klubova iz JSON-a
+// Функција за учитавање и приказивање клубова из JSON-а
 function loadClubs() {
-    fetch("data/klubovi.json") // Proverite da li je fajl u folderu "data"
+    fetch("data/klubovi.json") // Проверите да ли је фајл у фолдеру "data"
         .then(response => response.json())
         .then(data => {
             generateClubCardsBySeason(data);
         })
-        .catch(error => console.error("Greška pri učitavanju клубова:", error));
+        .catch(error => console.error("Грешка приликом учитавања клубова:", error));
 }
 
-// Funkcija za grupisanje kartica prema sezoni
+// Функција за груписање картица према сезони
 function generateClubCardsBySeason(clubs) {
     const container = document.querySelector(".container .row");
     if (!container) {
-        console.error("Container za klubove nije pronađen.");
+        console.error("Контенер за клубове није пронађен.");
         return;
     }
 
-    // Kreiramo objekat za grupisanje dresova po sezoni
+    // Креирамо објекат за груписање дресова по сезони
     const seasonGroups = {};
 
-    // Grupisanje dresova po sezoni
+    // Груписање дресова по сезони и филтрирање само слика које завршавају са "1"
     clubs.forEach(club => {
-        club.images.forEach(image => {
-            const season = image.season || "Непозната сезона";
-            if (!seasonGroups[season]) {
-                seasonGroups[season] = [];
-            }
-            seasonGroups[season].push({ team: club.team, ...image });
-        });
+        club.images
+            .filter(image => image.src.match(/1\.(jpg|png|jpeg|webp)$/i)) // Само слике које завршавају са "1"
+            .forEach(image => {
+                const season = image.season || "Непозната сезона";
+                if (!seasonGroups[season]) {
+                    seasonGroups[season] = [];
+                }
+                seasonGroups[season].push({ team: club.team, ...image });
+            });
     });
 
-    // Sortiranje sezona od najnovije ka starijim
+    // Сортирање сезона од најновије ка старијим
     const sortedSeasons = Object.keys(seasonGroups).sort((a, b) => b.localeCompare(a));
 
-    // Generisanje HTML-a za svaku sezonu i dresove unutar te sezone
+    // Генерисање HTML-а за сваку сезону и дресове унутар те сезоне
     sortedSeasons.forEach(season => {
-        // Dodaj naslov za sezonu
+        // Додај наслов за сезону
         const seasonTitleHTML = `
             <div class="col-12">
                 <h2 class="text-center mt-5 mb-3">Сезона ${season}</h2>
@@ -89,7 +91,7 @@ function generateClubCardsBySeason(clubs) {
         `;
         container.innerHTML += seasonTitleHTML;
 
-        // Dodaj dresove za tu sezonu
+        // Додај дресове за ту сезону
         seasonGroups[season].forEach(item => {
             const typeLabel = getTypeLabel(item.type);
             const cardHTML = `
@@ -109,13 +111,13 @@ function generateClubCardsBySeason(clubs) {
     });
 }
 
-// Funkcija za učitavanje stranice dresa
+// Функција за учитавање странице дреса
 function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const team = urlParams.get("team");
     const type = urlParams.get("type");
 
-    fetch("data/klubovi.json") // Učitaj JSON iz ispravne putanje
+    fetch("data/klubovi.json") // Учитај JSON из исправне путање
         .then(response => response.json())
         .then(data => {
             const club = data.find(c => c.team === team);
@@ -129,7 +131,7 @@ function initializeDresPage() {
 
                     if (mainImage) {
                         mainImage.src = images[0].src || "images/default.png";
-                        mainImage.alt = `${team} ${type} dres`;
+                        mainImage.alt = `${team} ${type} дрес`;
                     }
 
                     if (thumbnailsContainer) {
@@ -137,7 +139,7 @@ function initializeDresPage() {
                         images.forEach(image => {
                             const thumbnail = document.createElement("img");
                             thumbnail.src = image.src || "images/default.png";
-                            thumbnail.alt = `${team} ${type} dres`;
+                            thumbnail.alt = `${team} ${type} дрес`;
                             thumbnail.className = "thumbnail-img m-1";
                             thumbnail.style.cursor = "pointer";
                             thumbnail.addEventListener("click", () => {
@@ -156,7 +158,7 @@ function initializeDresPage() {
                 }
             }
         })
-        .catch(error => console.error("Greška pri učitavanju podataka o dresу:", error));
+        .catch(error => console.error("Грешка приликом учитавања података о дресу:", error));
 
     populateSizeOptions();
     populatePrintOptions();
@@ -172,14 +174,14 @@ function initializeDresPage() {
         addToCartButton.addEventListener("click", handleAddToCart);
     }
 
-    updatePrice(); // Postavi početnu cenu
+    updatePrice(); // Постави почетну цену
 }
 
-// Funkcija za popunjavanje opcija veličine
+// Функција за попуњавање опција величине
 function populateSizeOptions() {
     const sizeButtonsContainer = document.getElementById("sizeButtons");
     if (!sizeButtonsContainer) {
-        console.error("Container za veličine nije pronađen.");
+        console.error("Контенер за величине није пронађен.");
         return;
     }
 
@@ -192,11 +194,11 @@ function populateSizeOptions() {
     });
 }
 
-// Funkcija za popunjavanje opcija štampe
+// Функција за попуњавање опција штампе
 function populatePrintOptions() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     if (!printSelect) {
-        console.error("Select za štampu nije pronađen.");
+        console.error("Селект за штампу није пронађен.");
         return;
     }
 
@@ -208,7 +210,7 @@ function populatePrintOptions() {
     });
 }
 
-// Funkcija za ažuriranje cene
+// Функција за ажурирање цене
 function updatePrice() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     const priceElement = document.getElementById("productPrice");
@@ -223,7 +225,7 @@ function updatePrice() {
     }
 }
 
-// Funkcija za izbor veličine
+// Функција за избор величине
 function selectSize(size) {
     const buttons = document.querySelectorAll(".size-button");
     buttons.forEach(button => button.classList.remove("selected"));
@@ -233,6 +235,7 @@ function selectSize(size) {
         sizeWarning.style.display = "none";
     }
 }
+
 
 // Funkcija za uklanjanje proizvoda iz korpe
 function removeFromCart(index) {
