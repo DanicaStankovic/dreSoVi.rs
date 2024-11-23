@@ -236,4 +236,7 @@ function updateCartDisplay() {
     }
 
     updateCartCount();
+
+    console.log('Učitane slike:', images);
+
 }
