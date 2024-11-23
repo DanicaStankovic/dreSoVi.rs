@@ -3,54 +3,53 @@ let cart = [];
 
 // Učitavanje korpe iz localStorage
 document.addEventListener('DOMContentLoaded', function () {
-    loadCart(); // Učitaj korpu kada se stranica učita
+    loadCart();
 
     // Učitaj klubove samo ako smo na stranici klubovi.html
     if (window.location.pathname.includes('klubovi.html')) {
-        loadClubs(); // Učitaj klubove iz JSON datoteke
+        loadClubs();
     }
 
     // Učitaj dresove samo ako smo na stranici dres.html
     if (window.location.pathname.includes('dres.html')) {
-        loadDres(); // Učitaj dresove za izabrani tim
+        loadDres();
     }
 
-    // Dodavanje event listener-a na checkout dugme u cart.html
     const checkoutButton = document.querySelector('.checkout_button');
     if (checkoutButton) {
         checkoutButton.addEventListener('click', function () {
-            alert('Поруџбина је потврђена!'); // Obaveštenje o potvrdi
-            localStorage.removeItem('cart'); // Čišćenje korpe
+            alert('Поруџбина је потврђена!');
+            localStorage.removeItem('cart');
             cart = [];
             updateCartDisplay();
         });
     }
 
-    updateCartCount(); // Ažuriraj broj proizvoda u korpi pri učitavanju stranice
+    updateCartCount();
 });
 
 // Funkcija za učitavanje korpe iz localStorage
 function loadCart() {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
-        cart = JSON.parse(storedCart); // Pretvori string u objekat
-        updateCartDisplay(); // Ažuriraj prikaz korpe
+        cart = JSON.parse(storedCart);
+        updateCartDisplay();
     }
 }
 
 // Funkcija za učitavanje i prikazivanje klubova iz JSON-a
 function loadClubs() {
-    fetch('clubs.json') // Putanja do JSON datoteke
+    fetch('clubs.json')
         .then(response => response.json())
         .then(data => {
-            generateClubCards(data); // Generiši kartice za klubove
+            generateClubCards(data);
         })
         .catch(error => console.error('Greška pri učitavanju klubова:', error));
 }
 
 // Funkcija za generisanje kartica za klubove
 function generateClubCards(clubs) {
-    const container = document.querySelector('.container .row'); // Selektujte container sa klasom row
+    const container = document.querySelector('.container .row');
     clubs.forEach(club => {
         const filteredImages = club.images.filter(image => /1\.(jpg|png|jpeg|webp)$/i.test(image.src));
         filteredImages.forEach(image => {
@@ -120,7 +119,7 @@ function loadDres() {
 
                         const productTitle = document.getElementById('productTitle');
                         if (productTitle) {
-                            const season = images[0].season || 'Непозната сезона'; // Default ako nema sezone
+                            const season = images[0].season || 'Непозната сезона';
                             productTitle.textContent = `${club.team.replace('_', ' ').toUpperCase()} - ${type === 'home' ? 'Домаћи' : type === 'away' ? 'Гостујући' : 'Трећи'} (${season})`;
                         }
                     } else {
@@ -152,9 +151,22 @@ function handleAddToCart() {
     const size = document.querySelector('.size-button.selected')?.textContent || null;
     const selectedPrint = document.getElementById('pa_odabir-stampe')?.value || '';
 
-    if (!size || !selectedPrint) {
+    // Proveri da li je veličina izabrana
+    if (!size) {
         document.getElementById('sizeWarning').style.display = 'block';
-        return;
+    } else {
+        document.getElementById('sizeWarning').style.display = 'none';
+    }
+
+    // Proveri da li je štampa izabrana
+    if (!selectedPrint) {
+        document.getElementById('printWarning').style.display = 'block';
+    } else {
+        document.getElementById('printWarning').style.display = 'none';
+    }
+
+    if (!size || !selectedPrint) {
+        return; // Prekini ako nešto nije izabrano
     }
 
     const productName = document.getElementById('productTitle').textContent;
@@ -167,7 +179,7 @@ function handleAddToCart() {
     notification.textContent = "Производ је успешно додат у корпу!";
     notification.style.display = 'block';
 
-    updateCartCount(); // Ažuriraj broj proizvoda u korpi odmah nakon dodavanja
+    updateCartCount();
 
     setTimeout(() => {
         notification.style.display = 'none';
@@ -217,7 +229,7 @@ function updateCartDisplay() {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
 
-    updateCartCount(); // Provera broja proizvoda u korpi
+    updateCartCount();
 }
 
 // Automatsko učitavanje korpe
