@@ -83,6 +83,46 @@ function loadZvezdaDresovi() {
         .catch(error => console.error("Грешка приликом учитавања Звездиних дресова:", error));
 }
 
+// Функција за ажурирање цене
+function updatePrice() {
+    const selectedPrint = document.getElementById("pa_odabir-stampe").value;
+    const priceElement = document.getElementById("productPrice");
+    let price = BASE_PRICE;
+
+    if (selectedPrint === "usluzna-stampa") {
+        price = USLUZNA_STAMPA_PRICE;
+        displayPrintCustomizationField(true);
+    } else {
+        displayPrintCustomizationField(false);
+    }
+
+    if (selectedPrint) {
+        priceElement.textContent = `Цена: ${formatPrice(price)} РСД`;
+    } else {
+        priceElement.textContent = `Цена: од ${formatPrice(price)} РСД`;
+    }
+}
+
+// Функција за приказ или скривање поља за унос броја и имена за штампу
+function displayPrintCustomizationField(show) {
+    let customizationField = document.getElementById("printCustomizationField");
+    if (show) {
+        if (!customizationField) {
+            customizationField = document.createElement("div");
+            customizationField.id = "printCustomizationField";
+            customizationField.className = "mt-3";
+            customizationField.innerHTML = `
+                <label for="customText" class="form-label">Унесите име и број за штампу:</label>
+                <input type="text" id="customText" class="form-control" placeholder="Име и број">
+            `;
+            const printSelect = document.getElementById("pa_odabir-stampe");
+            printSelect.parentNode.insertBefore(customizationField, printSelect.nextSibling);
+        }
+        customizationField.style.display = "block";
+    } else if (customizationField) {
+        customizationField.style.display = "none";
+    }
+}
 
 // Функција за учитавање корпе из localStorage
 function loadCart() {
@@ -102,6 +142,9 @@ function loadCart() {
         }
     }
 }
+
+// Осталe функције остају исте...
+
 
 // Функција за учитавање и приказивање клубова из JSON-а
 function loadClubs() {
