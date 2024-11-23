@@ -49,33 +49,56 @@ function loadClubs() {
     fetch("data/klubovi.json") // Proverite da li je fajl u folderu "data"
         .then(response => response.json())
         .then(data => {
-            generateClubCards(data);
+            generateClubCardsBySeason(data);
         })
         .catch(error => console.error("Greška pri učitavanju клубова:", error));
 }
 
-// Funkcija za generisanje kartica za klubove
-function generateClubCards(clubs) {
+// Funkcija za grupisanje kartica prema sezoni
+function generateClubCardsBySeason(clubs) {
     const container = document.querySelector(".container .row");
     if (!container) {
         console.error("Container za klubove nije pronađen.");
         return;
     }
 
-    clubs.forEach(club => {
-        const filteredImages = club.images.filter(image =>
-            image.src.match(/1\.(jpg|png|jpeg|webp)$/i)
-        );
+    // Kreiramo objekat za grupisanje dresova po sezoni
+    const seasonGroups = {};
 
-        filteredImages.forEach(image => {
-            const typeLabel = getTypeLabel(image.type);
+    // Grupisanje dresova po sezoni
+    clubs.forEach(club => {
+        club.images.forEach(image => {
+            const season = image.season || "Непозната сезона";
+            if (!seasonGroups[season]) {
+                seasonGroups[season] = [];
+            }
+            seasonGroups[season].push({ team: club.team, ...image });
+        });
+    });
+
+    // Sortiranje sezona od najnovije ka starijim
+    const sortedSeasons = Object.keys(seasonGroups).sort((a, b) => b.localeCompare(a));
+
+    // Generisanje HTML-a za svaku sezonu i dresove unutar te sezone
+    sortedSeasons.forEach(season => {
+        // Dodaj naslov za sezonu
+        const seasonTitleHTML = `
+            <div class="col-12">
+                <h2 class="text-center mt-5 mb-3">Сезона ${season}</h2>
+            </div>
+        `;
+        container.innerHTML += seasonTitleHTML;
+
+        // Dodaj dresove za tu sezonu
+        seasonGroups[season].forEach(item => {
+            const typeLabel = getTypeLabel(item.type);
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="dres.html?team=${club.team}&type=${image.type}" class="card-link">
+                    <a href="dres.html?team=${item.team}&type=${item.type}" class="card-link">
                         <div class="card">
-                            <img src="${image.src}" class="card-img-top" alt="${club.team}">
+                            <img src="${item.src}" class="card-img-top" alt="${item.team}">
                             <div class="card-body text-center">
-                                <h5 class="card-title">${formatTeamName(club.team)} - ${typeLabel} (${image.season || "Непозната сезона"})</h5>
+                                <h5 class="card-title">${formatTeamName(item.team)} - ${typeLabel}</h5>
                             </div>
                         </div>
                     </a>
@@ -133,7 +156,7 @@ function initializeDresPage() {
                 }
             }
         })
-        .catch(error => console.error("Greška pri učitavanju podataka o dresu:", error));
+        .catch(error => console.error("Greška pri učitavanju podataka o dresу:", error));
 
     populateSizeOptions();
     populatePrintOptions();
