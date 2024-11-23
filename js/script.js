@@ -45,7 +45,7 @@ function loadCart() {
             cart.forEach(item => {
                 if (!item.price || isNaN(item.price)) {
                     console.error("Неисправан артикал у корпи:", item);
-                    item.price = 0; // Постави подразумевану цену ако није исправна
+                    item.price = BASE_PRICE; // Постави подразумевану цену ако није исправна
                 }
             });
         } catch (error) {
@@ -54,7 +54,6 @@ function loadCart() {
         }
     }
 }
-
 
 // Функција за учитавање и приказивање клубова из JSON-а
 function loadClubs() {
@@ -230,7 +229,6 @@ function populatePrintOptions() {
     });
 }
 
-
 // Функција за ажурирање цене
 function updatePrice() {
     const printSelect = document.getElementById("pa_odabir-stampe");
@@ -257,8 +255,7 @@ function selectSize(size) {
     }
 }
 
-
-// Funkcija za uklanjanje proizvoda iz korpe
+// Funkcija za uklanjanje proizvода iz korpe
 function removeFromCart(index) {
     cart.splice(index, 1); // Uklanja proizvod iz korpe na osnovu indeksa
     saveCart(); // Čuva ažuriranu korpu u localStorage
@@ -317,7 +314,7 @@ function displayNotification(message) {
     }
 }
 
-// Funkcija za ažuriranje broja proizvoda u korпи
+// Funkcija za ažuriranje broja proizvoda u корпи
 function updateCartCount() {
     const cartCountElement = document.getElementById("cart-count");
     if (cartCountElement) {
@@ -387,7 +384,7 @@ function updateCartDisplay() {
     cart.forEach((item, index) => {
         if (!item.price || isNaN(item.price)) {
             console.error(`Производ у корпи има неважећу цену:`, item);
-            item.price = 0;
+            item.price = BASE_PRICE;
         }
 
         total += item.price;
@@ -411,5 +408,3 @@ function updateCartDisplay() {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
 }
-
-
