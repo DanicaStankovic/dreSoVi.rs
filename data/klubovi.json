@@ -14,19 +14,19 @@
   {
     "team": "inter_milan",
     "images": [
-      { "src": "images/klubovi/2021/inter_milan/inter_away1.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_away2.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_away3.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_home1.jpg", "type": "home", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_home2.jpg", "type": "home", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_home3.jpg", "type": "home", "season": "2021/2022" },
-      { "src": "images/klubovi/2024/inter_milan/inter_away1.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_away2.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_away3.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_away4.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_home1.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_home2.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_home3.jpg", "type": "home", "season": "2024/2025" }
+      { "src": "images/klubovi/2021/inter_milan/inter_milan_away1.jpg", "type": "away", "season": "2021/2022" },
+      { "src": "images/klubovi/2021/inter_milan/inter_milan_away2.jpg", "type": "away", "season": "2021/2022" },
+      { "src": "images/klubovi/2021/inter_milan/inter_milan_away3.jpg", "type": "away", "season": "2021/2022" },
+      { "src": "images/klubovi/2021/inter_milan/inter_milan_home1.jpg", "type": "home", "season": "2021/2022" },
+      { "src": "images/klubovi/2021/inter_milan/inter_milan_home2.jpg", "type": "home", "season": "2021/2022" },
+      { "src": "images/klubovi/2021/inter_milan/inter_milan_home3.jpg", "type": "home", "season": "2021/2022" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_away1.jpg", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_away2.jpg", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_away3.jpg", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_away4.jpg", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_home1.jpg", "type": "home", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_home2.jpg", "type": "home", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/inter_milan/inter_milan_home3.jpg", "type": "home", "season": "2024/2025" }
     ]
   },
   {
