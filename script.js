@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
             updateCartDisplay();
         });
     }
+
+    updateCartCount(); // Ažuriraj broj proizvoda u korpi pri učitavanju stranice
 });
 
 // Funkcija za učitavanje korpe iz localStorage
@@ -43,7 +45,7 @@ function loadClubs() {
         .then(data => {
             generateClubCards(data); // Generiši kartice za klubove
         })
-        .catch(error => console.error('Greška pri učitavanju klubova:', error));
+        .catch(error => console.error('Greška pri učitavanju klubова:', error));
 }
 
 // Funkcija za generisanje kartica za klubove
@@ -160,12 +162,34 @@ function handleAddToCart() {
     notification.textContent = "Производ је успешно додат у корпу!";
     notification.style.display = 'block';
 
+    updateCartCount(); // Ažuriraj broj proizvoda u korpi odmah nakon dodavanja
+
     setTimeout(() => {
         notification.style.display = 'none';
     }, 3000);
 }
 
-// Ažuriranje prikaza korpe
+// Funkcija za ažuriranje broja proizvoda u korpi
+function updateCartCount() {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.textContent = `(${cart.length})`;
+    }
+}
+
+// Funkcija za čuvanje korpe
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Funkcija za uklanjanje proizvoda iz korpe
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCartDisplay();
+}
+
+// Funkcija za prikaz korpe
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById('cartItems');
     if (!cartItemsContainer) return;
@@ -188,22 +212,7 @@ function updateCartDisplay() {
         totalPriceElement.textContent = `Укупно: ${total} РСД`;
     }
 
-    const cartCountElement = document.getElementById('cart-count');
-    if (cartCountElement) {
-        cartCountElement.textContent = `(${cart.length})`;
-    }
-}
-
-// Funkcija za čuvanje korpe
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Funkcija za uklanjanje proizvoda iz korpe
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    saveCart();
-    updateCartDisplay();
+    updateCartCount(); // Provera broja proizvoda u korpi
 }
 
 // Automatsko učitavanje korpe
