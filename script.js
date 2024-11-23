@@ -50,10 +50,8 @@ function loadClubs() {
 function generateClubCards(clubs) {
     const container = document.querySelector('.container .row'); // Selektujte container sa klasom row
     clubs.forEach(club => {
-        // Filtriraj slike koje završavaju sa '1' i podržava različite ekstenzije
         const filteredImages = club.images.filter(image => /1\.(jpg|png|jpeg|webp)$/i.test(image.src));
         filteredImages.forEach(image => {
-            // Određivanje srpskog naziva za tip dresa
             let typeLabel = '';
             switch (image.type) {
                 case 'home':
@@ -69,7 +67,6 @@ function generateClubCards(clubs) {
                     typeLabel = '';
             }
 
-            // Kreirajte HTML za svaku karticu
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <a href="dres.html?team=${club.team}&type=${image.type}" class="card-link">
@@ -82,7 +79,6 @@ function generateClubCards(clubs) {
                     </a>
                 </div>
             `;
-            // Dodajte generisanu karticu u container
             container.innerHTML += cardHTML;
         });
     });
@@ -104,10 +100,9 @@ function loadDres() {
                     const mainImageElement = document.getElementById('mainImage');
                     const thumbnailsContainer = document.getElementById('thumbnails');
 
-                    // Proverite da li elementi postoje
                     if (mainImageElement && thumbnailsContainer) {
                         mainImageElement.src = images[0].src;
-                        thumbnailsContainer.innerHTML = ''; // Očisti prethodne slike
+                        thumbnailsContainer.innerHTML = '';
 
                         images.forEach(image => {
                             const thumbnail = document.createElement('img');
@@ -136,29 +131,27 @@ function loadDres() {
 
 // Ažuriranje prikaza korpe
 function updateCartDisplay() {
-    const cartItemsContainer = document.getElementById('cartItems'); // Pronađi kontejner za stavke
-    if (!cartItemsContainer) return; // Ako kontejner ne postoji, prekini
-    cartItemsContainer.innerHTML = ''; // Očisti postojeće stavke
-    let total = 0; // Ukupna cena
+    const cartItemsContainer = document.getElementById('cartItems');
+    if (!cartItemsContainer) return;
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
 
-    // Prikaz stavki u korpi
     cart.forEach((item, index) => {
-        total += item.price; // Dodaj cenu stavke
-        const itemDiv = document.createElement('div'); // Kreiraj novi div
+        total += item.price;
+        const itemDiv = document.createElement('div');
         itemDiv.innerHTML = `
             <h4>${item.name} - Величина: ${item.size}</h4>
             <p>Цена: ${item.price} РСД</p>
             <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Уклони</button>
         `;
-        cartItemsContainer.appendChild(itemDiv); // Dodaj div u kontejner
+        cartItemsContainer.appendChild(itemDiv);
     });
 
-    const totalPriceElement = document.getElementById('totalPrice'); // Pronađi element za ukupnu cenu
+    const totalPriceElement = document.getElementById('totalPrice');
     if (totalPriceElement) {
-        totalPriceElement.textContent = `Укупно: ${total} РСД`; // Prikaz ukupne cene
+        totalPriceElement.textContent = `Укупно: ${total} РСД`;
     }
 
-    // Ažuriranje broja stavki u korpi
     const cartCountElement = document.getElementById('cart-count');
     if (cartCountElement) {
         cartCountElement.textContent = `(${cart.length})`;
@@ -167,18 +160,18 @@ function updateCartDisplay() {
 
 // Uklanjanje stavke iz korpe
 function removeFromCart(index) {
-    cart.splice(index, 1); // Ukloni stavku iz korpe
-    updateCartDisplay(); // Ažuriraj prikaz korpe
-    saveCart(); // Sačuvaj promene
+    cart.splice(index, 1);
+    updateCartDisplay();
+    saveCart();
 }
 
 // Funkcija za dodavanje proizvoda u korpu
 function addToCart(productName, price, size, isZvezda = false, player = '') {
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || '';
     if (!size || selectedPrint === '') {
-        document.getElementById("sizeWarning").textContent = "Молимо изаберите величину и штампу."; // Upozorenje
-        document.getElementById("sizeWarning").style.display = "block"; // Prikazivanje upozorenja
-        return; // Prekini izvršavanje
+        document.getElementById("sizeWarning").textContent = "Молимо изаберите величину и штампу.";
+        document.getElementById("sizeWarning").style.display = "block";
+        return;
     }
 
     if (isZvezda && !player) {
@@ -187,22 +180,21 @@ function addToCart(productName, price, size, isZvezda = false, player = '') {
         return;
     }
 
-    cart.push({ name: productName, price: price, size: size, player: player }); // Dodaj stavku u korpu
-    saveCart(); // Sačuvaj promene
+    cart.push({ name: productName, price: price, size: size, player: player });
+    saveCart();
 
-    // Prikaz obaveštenja
     const notification = document.getElementById('notification');
     notification.textContent = "Производ је успешно додат у корпу.";
-    notification.classList.add('visible'); // Prikaz obaveštenja
+    notification.style.display = "block";
     setTimeout(() => {
-        notification.classList.remove('visible'); // Sakrij obaveštenje posle 3 sekunde
+        notification.style.display = "none";
     }, 3000);
 }
 
 // Čuvanje korpe u localStorage
 function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart)); // Sačuvaj korpu kao string
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 // Učitaj korpu kada se stranica učita
-window.onload = loadCart; // Pozovi loadCart funkciju
+window.onload = loadCart;

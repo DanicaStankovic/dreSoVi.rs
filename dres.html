@@ -42,19 +42,20 @@
     </header>
 
     <section class="product_page">
-        <div id="thumbnails" class="thumbnails"></div>
-
+        <div class="thumbnails-container">
+            <div id="thumbnails" class="thumbnails"></div>
+        </div>
+    
         <div class="main_image_container">
             <img id="mainImage" src="domaci.png" alt="Домаћи дрес" class="main_image">
         </div>
-
+    
         <div class="product_details">
             <h2 id="productTitle">Дрес за сезону 2024/25</h2>
             <p>Нови дрес за сезону 2024/25. Аутентичан дрес.</p>
             <p><strong>Састав:</strong> 100% полиестер.</p>
-
             <p id="productPrice" class="font-weight-bold">Цена: од 9.990,00 РСД</p>
-
+    
             <div id="sizeButtons" class="size-options">
                 <button class="size-button" onclick="selectSize('XS')">XS</button>
                 <button class="size-button" onclick="selectSize('S')">S</button>
@@ -63,22 +64,21 @@
                 <button class="size-button" onclick="selectSize('XL')">XL</button>
                 <button class="size-button" onclick="selectSize('XXL')">XXL</button>
             </div>
-
+    
             <p id="sizeWarning" class="warning-text" style="display: none;">Молимо изаберите величину дреса.</p>
-
+    
             <label for="pa_odabir-stampe" class="mt-3">Одaбрана штампа:</label>
             <select id="pa_odabir-stampe" class="form-control mb-3" name="attribute_pa_odabir-stampe">
                 <option value="">Одаберите опцију</option>
                 <option value="bez-broja">Без броја</option>
                 <option value="usluzna-stampa">Услужна штампа</option>
             </select>
-
+    
             <button id="addToCartButton" class="btn btn-dark mt-3" onclick="handleAddToCart()">Додај у корпу</button>
-            
             <div id="notification" class="notification" style="display: none;">Производ је успешно додат у корпу!</div>
         </div>
     </section>
-
+    
     <!-- Benefits Section -->
     <section class="benefits-section container my-5">
         <div class="row text-center">

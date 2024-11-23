@@ -102,13 +102,22 @@ body {
     margin-bottom: 10px;
 }
 
-/* Thumbnail Styling */
+/* Product Page Styling */
+.product_page {
+    display: flex;
+    flex-direction: row; /* Postavlja elemente horizontalno */
+    justify-content: center;
+    align-items: flex-start; /* Poravnanje prema vrhu */
+    gap: 20px; /* Razmak između sekcija */
+    margin: 20px;
+}
+
+/* Thumbnails Styling */
 .thumbnails {
     display: flex;
-    flex-direction: row; /* Postavi sličice u red */
+    flex-direction: column; /* Vertikalni raspored sličica */
     gap: 10px; /* Razmak između sličica */
-    justify-content: center; /* Centriranje sličica */
-    margin-bottom: 20px; /* Razmak ispod sličica */
+    justify-content: flex-start; /* Poravnanje prema vrhu */
 }
 
 .thumbnail-img {
@@ -128,18 +137,70 @@ body {
 
 /* Main Image Styling */
 .main_image_container {
+    flex: 1; /* Pruža više prostora glavnoj slici */
     display: flex;
     justify-content: center;
-    width: 100%; /* Puna širina */
-    max-width: 500px; /* Maksimalna širina za glavni prikaz */
-    margin-bottom: 20px; /* Razmak ispod glavne slike */
+    align-items: center;
 }
 
 .main_image {
     width: 100%; /* Puna širina */
+    max-width: 400px; /* Maksimalna širina za glavni prikaz */
     height: auto; /* Automatska visina */
-    max-height: 500px; /* Maksimalna visina za glavni prikaz */
     object-fit: contain; /* Zadržava ceo sadržaj slike */
+    max-height: 500px; /* Maksimalna visina glavne slike */
+}
+
+/* Product Details Styling */
+.product_details {
+    flex: 1; /* Pruža više prostora za detalje */
+    display: flex;
+    flex-direction: column; /* Vertikalni raspored detalja */
+    justify-content: flex-start; /* Poravnanje prema vrhu */
+}
+
+/* Size Buttons */
+.size-options {
+    display: flex;
+    flex-wrap: wrap; /* Omogućava preklapanje na manjim ekranima */
+    gap: 10px; /* Razmak između dugmadi */
+    margin: 10px 0;
+}
+
+.size-button {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.size-button:hover {
+    background-color: #e2e6ea;
+}
+
+.size-button.selected {
+    background-color: #c40000; /* Crvena boja za izabranu veličinu */
+    color: white;
+}
+
+/* Obaveštenje za izbor veličine */
+.warning-text {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Dugme Dodaj u korpu */
+#addToCartButton {
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Povećan razmak iznad dugmeta */
 }
 
 /* Footer Styling */
