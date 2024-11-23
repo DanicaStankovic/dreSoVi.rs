@@ -152,11 +152,11 @@ function updatePrice() {
     const priceElement = document.getElementById('productPrice');
 
     if (selectedPrint === 'usluzna-stampa') {
-        priceElement.textContent = 'Цена: 11.490,00 РСД';
+        priceElement.textContent = 'Цена: 11490 РСД';
     } else if (selectedPrint) {
-        priceElement.textContent = 'Цена: 9.990,00 РСД';
+        priceElement.textContent = 'Цена: 9990 РСД';
     } else {
-        priceElement.textContent = 'Цена: од 9.990,00 РСД';
+        priceElement.textContent = 'Цена: од 9990 РСД';
     }
 }
 
