@@ -123,13 +123,15 @@ a {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .thumbnails {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     justify-content: center;
+    gap: 10px;
 }
 
 .thumbnail-img {
@@ -253,17 +255,25 @@ footer a:hover {
         gap: 20px;
     }
 
-    .main_image_container,
-    .thumbnails-container,
-    .product_details {
-        width: 33%;
-    }
-
-    .product_details {
-        text-align: left;
-    }
-
     .thumbnails-container {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .thumbnails {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main_image_container {
+        width: 40%;
+    }
+
+    .product_details {
+        width: 40%;
+        text-align: left;
     }
 }
