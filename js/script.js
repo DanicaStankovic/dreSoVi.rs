@@ -107,7 +107,7 @@ function generateClubCardsBySeason(clubs) {
             const typeLabel = getTypeLabel(item.type);
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <a href="dres.html?team=${item.team}&type=${item.type}" class="card-link">
+                    <a href="dres.html?team=${item.team}&type=${item.type}&season=${item.season}" class="card-link">
                         <div class="card">
                             <img src="${item.src}" class="card-img-top" alt="${item.team}">
                             <div class="card-body text-center">
@@ -127,6 +127,7 @@ function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const team = urlParams.get("team");
     const type = urlParams.get("type");
+    const season = urlParams.get("season");
 
     fetch("data/klubovi.json") // Учитај JSON из исправне путање
         .then(response => response.json())
@@ -134,7 +135,7 @@ function initializeDresPage() {
             const club = data.find(c => c.team === team);
 
             if (club) {
-                const images = club.images.filter(img => img.type === type);
+                const images = club.images.filter(img => img.type === type && img.season === season);
 
                 if (images.length > 0) {
                     const mainImage = document.getElementById("mainImage");
