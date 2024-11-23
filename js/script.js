@@ -208,7 +208,16 @@ function populatePrintOptions() {
         opt.textContent = option.text;
         printSelect.appendChild(opt);
     });
+
+    // Додај слушаоца догађаја за сакривање поруке при избору опције
+    printSelect.addEventListener("change", () => {
+        const printWarning = document.getElementById("printWarning");
+        if (printWarning && printSelect.value !== "") {
+            printWarning.style.display = "none";
+        }
+    });
 }
+
 
 // Функција за ажурирање цене
 function updatePrice() {
