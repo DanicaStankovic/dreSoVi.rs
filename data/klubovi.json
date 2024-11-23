@@ -62,5 +62,56 @@
       { "src": "images/klubovi/2022/river_plate/river_plate_third1.jpg", "type": "third", "season": "2022/2023" },
       { "src": "images/klubovi/2022/river_plate/river_plate_third2.jpg", "type": "third", "season": "2022/2023" }
     ]
+  },
+  {
+    "team": "manchester_united",
+    "images": [
+      { "src": "images/klubovi/2022/manchester_united/manchester_united_away1.jpg", "type": "away", "season": "2022/2023" },
+      { "src": "images/klubovi/2022/manchester_united/manchester_united_away2.jpg", "type": "away", "season": "2022/2023" },
+      { "src": "images/klubovi/2022/manchester_united/manchester_united_away3.jpg", "type": "away", "season": "2022/2023" },
+      { "src": "images/klubovi/2022/manchester_united/manchester_united_home1.jpg", "type": "home", "season": "2022/2023" },
+      { "src": "images/klubovi/2022/manchester_united/manchester_united_home2.jpg", "type": "home", "season": "2022/2023" },
+      { "src": "images/klubovi/2024/manchester_united/manchester_united_third1.jpg", "type": "third", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/manchester_united/manchester_united_third2.jpg", "type": "third", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/manchester_united/manchester_united_third3.jpg", "type": "third", "season": "2024/2025" }
+    ]
+  },
+  {
+    "team": "olympiacos",
+    "images": [
+      { "src": "images/klubovi/2023/olympiacos/olympiacos_away1.jpg", "type": "away", "season": "2023/2024" },
+      { "src": "images/klubovi/2023/olympiacos/olympiacos_away2.jpg", "type": "away", "season": "2023/2024" },
+      { "src": "images/klubovi/2023/olympiacos/olympiacos_away3.jpg", "type": "away", "season": "2023/2024" },
+      { "src": "images/klubovi/2023/olympiacos/olympiacos_home1.jpg", "type": "home", "season": "2023/2024" },
+      { "src": "images/klubovi/2023/olympiacos/olympiacos_home2.jpg", "type": "home", "season": "2023/2024" },
+      { "src": "images/klubovi/2023/olympiacos/olympiacos_home3.jpg", "type": "home", "season": "2023/2024" },
+      { "src": "images/klubovi/2024/olympiacos/olympiacos_away1.jpg", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/olympiacos/olympiacos_away2.jpg", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/olympiacos/olympiacos_home1.jpg", "type": "home", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/olympiacos/olympiacos_home2.jpg", "type": "home", "season": "2024/2025" }
+    ]
+  },
+  {
+    "team": "juventus",
+    "images": [
+      { "src": "images/klubovi/2024/juventus/juventus_away1.png", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/juventus/juventus_away2.png", "type": "away", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/juventus/juventus_third1.jpg", "type": "third", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/juventus/juventus_third2.jpg", "type": "third", "season": "2024/2025" }
+    ]
+  },
+  {
+    "team": "boca_juniors",
+    "images": [
+      { "src": "images/klubovi/2024/boca_juniors/boca_juniors_third1.jpg", "type": "third", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/boca_juniors/boca_juniors_third2.jpg", "type": "third", "season": "2024/2025" }
+    ]
+  },
+  {
+    "team": "lazio",
+    "images": [
+      { "src": "images/klubovi/2024/lazio/lazio_third1.jpg", "type": "third", "season": "2024/2025" },
+      { "src": "images/klubovi/2024/lazio/lazio_third2.jpg", "type": "third", "season": "2024/2025" }
+    ]
   }
 ]
