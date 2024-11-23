@@ -83,6 +83,53 @@ function generateClubCards(clubs) {
 
 // Funkcija za učitavanje stranice dresa
 function initializeDresPage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const team = urlParams.get("team");
+    const type = urlParams.get("type");
+
+    fetch("clubs.json")
+        .then(response => response.json())
+        .then(data => {
+            const club = data.find(c => c.team === team);
+
+            if (club) {
+                const images = club.images.filter(img => img.type === type);
+
+                if (images.length > 0) {
+                    const mainImage = document.getElementById("mainImage");
+                    const thumbnailsContainer = document.getElementById("thumbnails");
+
+                    if (mainImage) {
+                        mainImage.src = images[0].src || "images/default.png";
+                        mainImage.alt = `${team} ${type} dres`;
+                    }
+
+                    if (thumbnailsContainer) {
+                        thumbnailsContainer.innerHTML = "";
+                        images.forEach(image => {
+                            const thumbnail = document.createElement("img");
+                            thumbnail.src = image.src || "images/default.png";
+                            thumbnail.alt = `${team} ${type} dres`;
+                            thumbnail.className = "thumbnail-img m-1";
+                            thumbnail.style.cursor = "pointer";
+                            thumbnail.addEventListener("click", () => {
+                                if (mainImage) {
+                                    mainImage.src = image.src || "images/default.png";
+                                }
+                            });
+                            thumbnailsContainer.appendChild(thumbnail);
+                        });
+                    }
+
+                    const productTitle = document.getElementById("productTitle");
+                    if (productTitle) {
+                        productTitle.textContent = `${formatTeamName(team)} - ${getTypeLabel(type)} (${images[0].season || "Непозната сезона"})`;
+                    }
+                }
+            }
+        })
+        .catch(error => console.error("Greška pri učitavanju podataka o dresu:", error));
+
     populateSizeOptions();
     populatePrintOptions();
 
