@@ -17,24 +17,18 @@ const PRINT_OPTIONS = [
 document.addEventListener("DOMContentLoaded", function () {
     loadCart();
 
-    // Učitaj klubove samo ako smo na stranici klubovi.html
-    if (window.location.pathname.includes("klubovi.html")) {
-        loadClubs();
-    }
+    // Učitaj stranice na osnovu URL-a
+    const path = window.location.pathname;
 
-    // Učitaj dresove samo ako smo na stranici dres.html
-    if (window.location.pathname.includes("dres.html")) {
+    if (path.includes("klubovi.html")) {
+        loadClubs();
+    } else if (path.includes("dres.html")) {
         initializeDresPage();
     }
 
     const checkoutButton = document.querySelector(".checkout_button");
     if (checkoutButton) {
-        checkoutButton.addEventListener("click", function () {
-            alert("Поруџбина је потврђена!");
-            localStorage.removeItem("cart");
-            cart = [];
-            updateCartDisplay();
-        });
+        checkoutButton.addEventListener("click", checkoutHandler);
     }
 
     updateCartCount();
@@ -62,33 +56,21 @@ function loadClubs() {
 // Funkcija za generisanje kartica za klubove
 function generateClubCards(clubs) {
     const container = document.querySelector(".container .row");
-    clubs.forEach(club => {
-        const filteredImages = club.images.filter(image =>
-            /1\.(jpg|png|jpeg|webp)$/i.test(image.src)
-        );
-        filteredImages.forEach(image => {
-            let typeLabel = "";
-            switch (image.type) {
-                case "home":
-                    typeLabel = "Домаћи";
-                    break;
-                case "away":
-                    typeLabel = "Гостујући";
-                    break;
-                case "third":
-                    typeLabel = "Трећи";
-                    break;
-                default:
-                    typeLabel = "";
-            }
+    if (!container) {
+        console.error("Container za klubove nije pronađen.");
+        return;
+    }
 
+    clubs.forEach(club => {
+        club.images.forEach(image => {
+            const typeLabel = getTypeLabel(image.type);
             const cardHTML = `
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <a href="dres.html?team=${club.team}&type=${image.type}" class="card-link">
                         <div class="card">
                             <img src="${image.src}" class="card-img-top" alt="${club.team}">
                             <div class="card-body text-center">
-                                <h5 class="card-title">${club.team.replace("_", " ").toUpperCase()} - ${typeLabel} (${image.season || "Непозната сезона"})</h5>
+                                <h5 class="card-title">${formatTeamName(club.team)} - ${typeLabel} (${image.season || "Непозната сезона"})</h5>
                             </div>
                         </div>
                     </a>
@@ -107,11 +89,13 @@ function initializeDresPage() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     const addToCartButton = document.getElementById("addToCartButton");
 
-    // Dodaj event listener za promenu cene pri izboru štampe
-    printSelect.addEventListener("change", updatePrice);
+    if (printSelect) {
+        printSelect.addEventListener("change", updatePrice);
+    }
 
-    // Dodaj event listener za dodavanje u korpu
-    addToCartButton.addEventListener("click", handleAddToCart);
+    if (addToCartButton) {
+        addToCartButton.addEventListener("click", handleAddToCart);
+    }
 
     updatePrice(); // Postavi početnu cenu
 }
@@ -119,6 +103,11 @@ function initializeDresPage() {
 // Funkcija za popunjavanje opcija veličine
 function populateSizeOptions() {
     const sizeButtonsContainer = document.getElementById("sizeButtons");
+    if (!sizeButtonsContainer) {
+        console.error("Container za veličine nije pronađen.");
+        return;
+    }
+
     SIZE_OPTIONS.forEach(size => {
         const button = document.createElement("button");
         button.className = "size-button";
@@ -131,6 +120,11 @@ function populateSizeOptions() {
 // Funkcija za popunjavanje opcija štampe
 function populatePrintOptions() {
     const printSelect = document.getElementById("pa_odabir-stampe");
+    if (!printSelect) {
+        console.error("Select za štampu nije pronađen.");
+        return;
+    }
+
     PRINT_OPTIONS.forEach(option => {
         const opt = document.createElement("option");
         opt.value = option.value;
@@ -145,11 +139,13 @@ function updatePrice() {
     const priceElement = document.getElementById("productPrice");
     let price = BASE_PRICE;
 
-    if (printSelect.value === "usluzna-stampa") {
+    if (printSelect && printSelect.value === "usluzna-stampa") {
         price = USLUZNA_STAMPA_PRICE;
     }
 
-    priceElement.textContent = `Цена: ${formatPrice(price)} РСД`;
+    if (priceElement) {
+        priceElement.textContent = `Цена: ${formatPrice(price)} РСД`;
+    }
 }
 
 // Funkcija za izbor veličine
@@ -157,7 +153,10 @@ function selectSize(size) {
     const buttons = document.querySelectorAll(".size-button");
     buttons.forEach(button => button.classList.remove("selected"));
     event.target.classList.add("selected");
-    document.getElementById("sizeWarning").style.display = "none";
+    const sizeWarning = document.getElementById("sizeWarning");
+    if (sizeWarning) {
+        sizeWarning.style.display = "none";
+    }
 }
 
 // Funkcija za dodavanje u korpu
@@ -165,21 +164,8 @@ function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
 
-    // Provera unosa
-    if (!size) {
-        document.getElementById("sizeWarning").style.display = "block";
-    } else {
-        document.getElementById("sizeWarning").style.display = "none";
-    }
-
-    if (!selectedPrint) {
-        document.getElementById("printWarning").style.display = "block";
-    } else {
-        document.getElementById("printWarning").style.display = "none";
-    }
-
-    if (!size || !selectedPrint) {
-        return; // Ako nije validno, prekidamo
+    if (!validateInputs(size, selectedPrint)) {
+        return;
     }
 
     const productName = document.getElementById("productTitle").textContent;
@@ -188,15 +174,41 @@ function handleAddToCart() {
     cart.push({ name: productName, size, price, print: selectedPrint });
     saveCart();
 
-    const notification = document.getElementById("notification");
-    notification.textContent = "Производ је успешно додат у корпу!";
-    notification.style.display = "block";
-
+    displayNotification("Производ је успешно додат у корпу!");
     updateCartCount();
+}
 
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, 3000);
+// Funkcija za validaciju unosa
+function validateInputs(size, selectedPrint) {
+    const sizeWarning = document.getElementById("sizeWarning");
+    const printWarning = document.getElementById("printWarning");
+
+    if (!size) {
+        sizeWarning.style.display = "block";
+    } else {
+        sizeWarning.style.display = "none";
+    }
+
+    if (!selectedPrint) {
+        printWarning.style.display = "block";
+    } else {
+        printWarning.style.display = "none";
+    }
+
+    return size && selectedPrint;
+}
+
+// Funkcija za prikaz notifikacije
+function displayNotification(message) {
+    const notification = document.getElementById("notification");
+    if (notification) {
+        notification.textContent = message;
+        notification.style.display = "block";
+
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 3000);
+    }
 }
 
 // Funkcija za ažuriranje broja proizvoda u korpi
@@ -212,10 +224,46 @@ function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Funkcija za formatiranje cena
+function formatPrice(price) {
+    return price
+        .toFixed(2)
+        .replace(/\d(?=(\d{3})+\.)/g, "$&.")
+        .replace(".", ",");
+}
+
+// Funkcija za formatiranje imena tima
+function formatTeamName(teamName) {
+    return teamName.replace("_", " ").toUpperCase();
+}
+
+// Funkcija za dobijanje etikete za tip dresa
+function getTypeLabel(type) {
+    switch (type) {
+        case "home":
+            return "Домаћи";
+        case "away":
+            return "Гостујући";
+        case "third":
+            return "Трећи";
+        default:
+            return "";
+    }
+}
+
+// Funkcija za završetak narudžbine
+function checkoutHandler() {
+    alert("Поруџбина је потврђена!");
+    localStorage.removeItem("cart");
+    cart = [];
+    updateCartDisplay();
+}
+
 // Funkcija za prikaz korpe
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
     if (!cartItemsContainer) return;
+
     cartItemsContainer.innerHTML = "";
     let total = 0;
 
@@ -236,7 +284,4 @@ function updateCartDisplay() {
     }
 
     updateCartCount();
-
-    console.log('Učitane slike:', images);
-
 }
