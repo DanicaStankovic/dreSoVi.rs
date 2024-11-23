@@ -142,6 +142,11 @@ function selectSize(size) {
     document.getElementById('sizeWarning').style.display = 'none';
 }
 
+// Funkcija za formatiranje cena
+function formatPrice(price) {
+    return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.').replace('.', ',');
+}
+
 // Funkcija za dodavanje u korpu
 function handleAddToCart() {
     const size = document.querySelector('.size-button.selected')?.textContent || null;
@@ -153,7 +158,7 @@ function handleAddToCart() {
     }
 
     const productName = document.getElementById('productTitle').textContent;
-    const price = parseInt(document.getElementById('productPrice').textContent.replace(/\D/g, ''));
+    const price = parseFloat(document.getElementById('productPrice').textContent.replace(/\D/g, ''));
 
     cart.push({ name: productName, size, price, print: selectedPrint });
     saveCart();
@@ -201,7 +206,7 @@ function updateCartDisplay() {
         const itemDiv = document.createElement('div');
         itemDiv.innerHTML = `
             <h4>${item.name} - Величина: ${item.size}</h4>
-            <p>Цена: ${item.price} РСД</p>
+            <p>Цена: ${formatPrice(item.price)} РСД</p>
             <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Уклони</button>
         `;
         cartItemsContainer.appendChild(itemDiv);
@@ -209,7 +214,7 @@ function updateCartDisplay() {
 
     const totalPriceElement = document.getElementById('totalPrice');
     if (totalPriceElement) {
-        totalPriceElement.textContent = `Укупно: ${total} РСД`;
+        totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
 
     updateCartCount(); // Provera broja proizvoda u korpi
