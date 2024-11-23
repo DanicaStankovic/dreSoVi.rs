@@ -44,7 +44,7 @@ function loadClubs() {
         .then(data => {
             generateClubCards(data);
         })
-        .catch(error => console.error('Greška pri učitavanju klubова:', error));
+        .catch(error => console.error('Greška pri učitavanju клубова:', error));
 }
 
 // Funkcija za generisanje kartica za klubove
@@ -128,7 +128,7 @@ function loadDres() {
                 }
             }
         })
-        .catch(error => console.error('Greška pri učitavanju dresова:', error));
+        .catch(error => console.error('Greška pri učitavanju dресова:', error));
 }
 
 // Funkcija za izbor veličine
@@ -144,6 +144,20 @@ function selectSize(size) {
 // Funkcija za formatiranje cena
 function formatPrice(price) {
     return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.').replace('.', ',');
+}
+
+// Funkcija za ažuriranje cene na osnovu štampe
+function updatePrice() {
+    const selectedPrint = document.getElementById('pa_odabir-stampe').value;
+    const priceElement = document.getElementById('productPrice');
+
+    if (selectedPrint === 'usluzna-stampa') {
+        priceElement.textContent = 'Цена: 11.490,00 РСД';
+    } else if (selectedPrint) {
+        priceElement.textContent = 'Цена: 9.990,00 РСД';
+    } else {
+        priceElement.textContent = 'Цена: од 9.990,00 РСД';
+    }
 }
 
 // Funkcija za dodavanje u korpu
