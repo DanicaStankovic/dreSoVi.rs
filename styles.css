@@ -7,9 +7,9 @@ body {
 
 /* Link Styling */
 a {
-    text-decoration: none; /* Uklanja podvlačenje za sve linkove */
-    color: inherit; /* Nasleđuje boju teksta */
-    transition: color 0.3s ease; /* Glatka tranzicija za promenu boje */
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
 }
 
 /* Navigation Bar Styling */
@@ -61,7 +61,7 @@ a {
     box-shadow: none;
     background: transparent;
     transition: transform 0.3s ease;
-    height: 100%; /* Uniformna visina kartica */
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -73,7 +73,7 @@ a {
 
 .card-img-top {
     object-fit: contain;
-    height: 330px; /* Uniformna visina slika */
+    height: 330px;
     max-width: 100%;
     padding: 10px;
 }
@@ -112,66 +112,71 @@ a {
 /* Product Page Styling */
 .product_page {
     display: flex;
-    flex-direction: row; /* Postavlja elemente horizontalno */
-    justify-content: center;
-    align-items: flex-start; /* Poravnanje prema vrhu */
-    gap: 20px; /* Razmak između sekcija */
+    flex-direction: column;
+    gap: 20px;
     margin: 20px;
+    align-items: center;
 }
 
 /* Thumbnails Styling */
+.thumbnails-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .thumbnails {
     display: flex;
-    flex-direction: column; /* Vertikalni raspored sličica */
-    gap: 10px; /* Razmak između sličica */
-    justify-content: flex-start; /* Poravnanje prema vrhu */
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 .thumbnail-img {
-    width: 80px; /* Širina thumbnail slike */
-    height: 80px; /* Fiksna visina thumbnail slike */
-    object-fit: cover; /* Prilagođava sliku unutar okvira */
-    margin: 5px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
     cursor: pointer;
-    border-radius: 5px; /* Zaobljeni uglovi */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Senka */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
 
 .thumbnail-img:hover {
-    transform: scale(1.1); /* Povećanje na hover */
+    transform: scale(1.1);
 }
 
 /* Main Image Styling */
 .main_image_container {
-    flex: 1; /* Pruža više prostora glavnoj slici */
+    width: 100%;
+    max-width: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .main_image {
-    width: 100%; /* Puna širina */
-    max-width: 400px; /* Maksimalna širina za glavni prikaz */
-    height: auto; /* Automatska visina */
-    object-fit: contain; /* Zadržava ceo sadržaj slike */
-    max-height: 500px; /* Maksimalna visina glavne slike */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 500px;
 }
 
 /* Product Details Styling */
 .product_details {
-    flex: 1; /* Pruža više prostora za detalje */
+    width: 100%;
+    text-align: center;
     display: flex;
-    flex-direction: column; /* Vertikalni raspored detalja */
-    justify-content: flex-start; /* Poravnanje prema vrhu */
+    flex-direction: column;
+    gap: 15px;
 }
 
 /* Size Buttons */
 .size-options {
     display: flex;
-    flex-wrap: wrap; /* Omogućava preklapanje na manjim ekranima */
-    gap: 10px; /* Razmak između dugmadi */
-    margin: 10px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 .size-button {
@@ -187,18 +192,17 @@ a {
 }
 
 .size-button.selected {
-    background-color: #c40000; /* Crvena boja za izabranu veličinu */
+    background-color: #c40000;
     color: white;
 }
 
-/* Obaveštenje za izbor veličine */
+/* Warning Text */
 .warning-text {
     color: red;
     font-size: 14px;
-    margin-top: 5px;
 }
 
-/* Dugme Dodaj u korpu */
+/* Add to Cart Button */
 #addToCartButton {
     background-color: #343a40;
     color: white;
@@ -207,7 +211,20 @@ a {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px; /* Povećan razmak iznad dugmeta */
+}
+
+/* Notification */
+.notification {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
 }
 
 /* Footer Styling */
@@ -225,4 +242,28 @@ footer a {
 
 footer a:hover {
     color: #c9302c;
+}
+
+/* Desktop Screens */
+@media (min-width: 768px) {
+    .product_page {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .main_image_container,
+    .thumbnails-container,
+    .product_details {
+        width: 33%;
+    }
+
+    .product_details {
+        text-align: left;
+    }
+
+    .thumbnails-container {
+        justify-content: flex-start;
+    }
 }
