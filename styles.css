@@ -5,6 +5,13 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Link Styling */
+a {
+    text-decoration: none; /* Uklanja podvlačenje za sve linkove */
+    color: inherit; /* Nasleđuje boju teksta */
+    transition: color 0.3s ease; /* Glatka tranzicija za promenu boje */
+}
+
 /* Navigation Bar Styling */
 .navbar {
     background-color: #343a40;
