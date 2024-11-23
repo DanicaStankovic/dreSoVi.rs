@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
         loadClubs();
     } else if (path.includes("dres.html")) {
         initializeDresPage();
+    } else if (path.includes("korpa.html")) {
+        updateCartDisplay();
     }
 
     const checkoutButton = document.querySelector(".checkout_button");
@@ -39,7 +41,6 @@ function loadCart() {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
         cart = JSON.parse(storedCart);
-        updateCartDisplay();
     }
 }
 
@@ -67,7 +68,6 @@ function generateClubCards(clubs) {
             image.src.match(/1\.(jpg|png|jpeg|webp)$/i)
         );
 
-        // Generisanje kartica za filtrirane slike
         filteredImages.forEach(image => {
             const typeLabel = getTypeLabel(image.type);
             const cardHTML = `
@@ -210,6 +210,13 @@ function selectSize(size) {
     if (sizeWarning) {
         sizeWarning.style.display = "none";
     }
+}
+
+// Funkcija za uklanjanje proizvoda iz korpe
+function removeFromCart(index) {
+    cart.splice(index, 1); // Uklanja proizvod iz korpe na osnovu indeksa
+    saveCart(); // Čuva ažuriranu korpu u localStorage
+    updateCartDisplay(); // Ažurira prikaz korpe
 }
 
 // Funkcija za dodavanje u korpu
