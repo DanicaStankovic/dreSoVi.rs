@@ -200,6 +200,17 @@ function updatePrice() {
     }
 }
 
+// Funkcija za izbor veličine
+function selectSize(size) {
+    const buttons = document.querySelectorAll(".size-button");
+    buttons.forEach(button => button.classList.remove("selected"));
+    event.target.classList.add("selected");
+    const sizeWarning = document.getElementById("sizeWarning");
+    if (sizeWarning) {
+        sizeWarning.style.display = "none";
+    }
+}
+
 // Funkcija za uklanjanje proizvoda iz korpe
 function removeFromCart(index) {
     cart.splice(index, 1); // Uklanja proizvod iz korpe na osnovu indeksa
@@ -217,7 +228,8 @@ function handleAddToCart() {
     }
 
     const productName = document.getElementById("productTitle").textContent;
-    const price = parseFloat(document.getElementById("productPrice").textContent.replace(/\D/g, ""));
+    const priceText = document.getElementById("productPrice").textContent;
+    const price = parseFloat(priceText.replace(/[^\d,]/g, "").replace(",", "."));
 
     cart.push({ name: productName, size, price, print: selectedPrint });
     saveCart();
@@ -274,9 +286,9 @@ function saveCart() {
 
 // Funkcija za formatiranje cena
 function formatPrice(price) {
-    return price
+    return Number(price)
         .toFixed(2)
-        .replace(/\d(?=(\d{3})+\.)/g, "$&.")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         .replace(".", ",");
 }
 
