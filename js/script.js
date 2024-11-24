@@ -78,20 +78,16 @@ function generateDresoviBySeason(data, containerId) {
         }
     }
 
-// Генерисање HTML-а за сваку сезону и дресове унутар те сезоне
-sortedSeasons.forEach(season => {
-    const seasonTitleHTML = `
-        <div class="col-12">
-            <h2 class="text-center mt-5 mb-3">Сезона ${season}//${parseInt(season) + 1}</h2>
-        </div>
-    `;
-    container.innerHTML += seasonTitleHTML;
+    // Сортирање сезона од најновије ка старијој
+    const sortedSeasons = Object.keys(seasonGroups).sort((a, b) => {
+        return b.localeCompare(a);
+    });
 
     // Генерисање HTML-а за сваку сезону и дресове унутар те сезоне
     sortedSeasons.forEach(season => {
         const seasonTitleHTML = `
             <div class="col-12">
-                <h2 class="text-center mt-5 mb-3">Сезона ${season}</h2>
+                <h2 class="text-center mt-5 mb-3">Сезона ${season}/${parseInt(season) + 1}</h2>
             </div>
         `;
         container.innerHTML += seasonTitleHTML;
@@ -158,7 +154,7 @@ function initializeDresPage() {
                 return;
             }
 
-            // Pronađi dres koji odgovara traženom tipu
+            // Pronađи dres koji odgovara traženom tipu
             const dres = seasonData.find(item => item.type === type);
             if (dres) {
                 const images = dres.images;
@@ -217,8 +213,7 @@ function initializeDresPage() {
     updatePrice(); // Постави почетну цену
 }
 
-
-// Функција за попуњавање опција величине
+// Остале функције за рад са корпом, приказ цене, и завршетак наруџбине
 function populateSizeOptions() {
     const sizeButtonsContainer = document.getElementById("sizeButtons");
     if (!sizeButtonsContainer) {
@@ -235,7 +230,6 @@ function populateSizeOptions() {
     });
 }
 
-// Функција за попуњавање опција штампе
 function populatePrintOptions() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     if (!printSelect) {
@@ -259,7 +253,6 @@ function populatePrintOptions() {
     });
 }
 
-// Функција за избор величине
 function selectSize(size, event) {
     const buttons = document.querySelectorAll(".size-button");
     buttons.forEach(button => button.classList.remove("selected"));
@@ -270,7 +263,6 @@ function selectSize(size, event) {
     }
 }
 
-// Остале функције за рад са корпом, приказ цене, и завршетак наруџбине
 function updatePrice() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     const priceElement = document.getElementById("productPrice");
