@@ -54,7 +54,7 @@ function loadTeamData(jsonPath, containerId) {
 function generateDresoviBySeason(data, containerId) {
     const container = document.getElementById(containerId);
     if (!container) {
-        console.error("Контенер за дресове није пронађен.");
+        console.error(`Контенер за дресове није пронађен: ${containerId}`);
         return;
     }
 
@@ -148,10 +148,10 @@ function initializeDresPage() {
         jsonPath = "data/retro.json";
     }
 
-    fetch(jsonPath) // Учитај JSON из исправне путање
+    fetch(jsonPath)
         .then(response => response.json())
         .then(data => {
-            const club = data.find(c => c.team === team);
+            const club = data.seasons[season]?.find(c => c.team === team);
 
             if (club) {
                 const images = club.images.filter(img => img.type === type && img.season === season);
@@ -220,36 +220,23 @@ function populateSizeOptions() {
         const button = document.createElement("button");
         button.className = "size-button";
         button.textContent = size;
-        button.addEventListener("click", (event) => selectSize(size, event));
+        button.addEventListener("click", event => selectSize(size, event));
         sizeButtonsContainer.appendChild(button);
     });
 }
 
-// Функција за попуњавање опција штампе
-function populatePrintOptions() {
-    const printSelect = document.getElementById("pa_odabir-stampe");
-    if (!printSelect) {
-        console.error("Селект за штампу није пронађен.");
-        return;
+// Функција за избор величине
+function selectSize(size, event) {
+    const buttons = document.querySelectorAll(".size-button");
+    buttons.forEach(button => button.classList.remove("selected"));
+    event.target.classList.add("selected");
+    const sizeWarning = document.getElementById("sizeWarning");
+    if (sizeWarning) {
+        sizeWarning.style.display = "none";
     }
-
-    PRINT_OPTIONS.forEach(option => {
-        const opt = document.createElement("option");
-        opt.value = option.value;
-        opt.textContent = option.text;
-        printSelect.appendChild(opt);
-    });
-
-    // Додај слушаоца догађаја за сакривање поруке при избору опције
-    printSelect.addEventListener("change", () => {
-        const printWarning = document.getElementById("printWarning");
-        if (printWarning && printSelect.value !== "") {
-            printWarning.style.display = "none";
-        }
-    });
 }
 
-// Функција за ажурирање цене
+// Остале функције за рад са корпом, приказ цене, и завршетак наруџбине
 function updatePrice() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     const priceElement = document.getElementById("productPrice");
@@ -264,25 +251,6 @@ function updatePrice() {
     }
 }
 
-// Функција за избор величине
-function selectSize(size, event) {
-    const buttons = document.querySelectorAll(".size-button");
-    buttons.forEach(button => button.classList.remove("selected"));
-    event.target.classList.add("selected");
-    const sizeWarning = document.getElementById("sizeWarning");
-    if (sizeWarning) {
-        sizeWarning.style.display = "none";
-    }
-}
-
-// Funkcija za uklanjanje proizvoda iz korpe
-function removeFromCart(index) {
-    cart.splice(index, 1); // Uklanja proizvod iz korpe na osnovu indeksa
-    saveCart(); // Čuva ažuriranu korpu u localStorage
-    updateCartDisplay(); // Ažurira prikaz korpe
-}
-
-// Funkcija za dodavanje u корпу
 function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
@@ -307,7 +275,6 @@ function handleAddToCart() {
     updateCartCount();
 }
 
-// Funkcija za validaciju unosa
 function validateInputs(size, selectedPrint) {
     const sizeWarning = document.getElementById("sizeWarning");
     const printWarning = document.getElementById("printWarning");
@@ -327,7 +294,6 @@ function validateInputs(size, selectedPrint) {
     return size && selectedPrint;
 }
 
-// Funkcija za prikaz notifikacije
 function displayNotification(message) {
     const notification = document.getElementById("notification");
     if (notification) {
@@ -340,7 +306,6 @@ function displayNotification(message) {
     }
 }
 
-// Funkcija za ažuriranje broja proizvoda u корпи
 function updateCartCount() {
     const cartCountElement = document.getElementById("cart-count");
     if (cartCountElement) {
@@ -348,27 +313,22 @@ function updateCartCount() {
     }
 }
 
-// Funkcija za čuvanje korpe
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Funkcija za formatiranje cena
 function formatPrice(price) {
     return price.toLocaleString("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-// Funkcija za parsiranje cena iz stringa
 function parsePrice(priceString) {
     return parseFloat(priceString.replace(/\./g, "").replace(",", "."));
 }
 
-// Funkcija za formatiranje imena tima
 function formatTeamName(teamName) {
     return teamName.replace("_", " ").toUpperCase();
 }
 
-// Funkcija za dobijanje etikete za tip dresa
 function getTypeLabel(type) {
     switch (type) {
         case "home":
@@ -382,7 +342,6 @@ function getTypeLabel(type) {
     }
 }
 
-// Funkcija za završetak narudžbine
 function checkoutHandler() {
     alert("Поруџбина је потврђена!");
     localStorage.removeItem("cart");
@@ -390,7 +349,6 @@ function checkoutHandler() {
     updateCartDisplay();
 }
 
-// Funkcija za prikaz korpe
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
     if (!cartItemsContainer) {
@@ -433,4 +391,10 @@ function updateCartDisplay() {
     if (totalPriceElement) {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1); // Uklanja proizvod iz korpe na osnovu indeksa
+    saveCart(); // Čuva ažuriranu korpu u localStorage
+    updateCartDisplay(); // Ažurira prikaz korpe
 }
