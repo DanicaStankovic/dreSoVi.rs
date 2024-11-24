@@ -225,6 +225,30 @@ function populateSizeOptions() {
     });
 }
 
+// Функција за попуњавање опција штампе
+function populatePrintOptions() {
+    const printSelect = document.getElementById("pa_odabir-stampe");
+    if (!printSelect) {
+        console.error("Селект за штампу није пронађен.");
+        return;
+    }
+
+    PRINT_OPTIONS.forEach(option => {
+        const opt = document.createElement("option");
+        opt.value = option.value;
+        opt.textContent = option.text;
+        printSelect.appendChild(opt);
+    });
+
+    // Додај слушаоца догађаја за сакривање поруке при избору опције
+    printSelect.addEventListener("change", () => {
+        const printWarning = document.getElementById("printWarning");
+        if (printWarning && printSelect.value !== "") {
+            printWarning.style.display = "none";
+        }
+    });
+}
+
 // Функција за избор величине
 function selectSize(size, event) {
     const buttons = document.querySelectorAll(".size-button");
