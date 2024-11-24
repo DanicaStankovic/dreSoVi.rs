@@ -1,52 +1,47 @@
 {
-    "team": "retro",
-    "seasons": {
-      "arsenal": {
-        "1991": [
-          {
-            "type": "away",
-            "images": [
-              "images/retro/arsenal/1991/arsenal_away1.jpg",
-              "images/retro/arsenal/1991/arsenal_away2.jpg",
-              "images/retro/arsenal/1991/arsenal_away3.jpg"
-            ]
-          }
-        ]
-      },
-      "inter_milan": {
-        "1996": [
-          {
-            "type": "third",
-            "images": [
-              "images/retro/inter_milan/1996/inter_milan_third1.jpg",
-              "images/retro/inter_milan/1996/inter_milan_third2.jpg",
-              "images/retro/inter_milan/1996/inter_milan_third3.jpg",
-              "images/retro/inter_milan/1996/inter_milan_third4.jpg"
-            ]
-          }
-        ]
-      },
-      "lazio": {
-        "1999": [
-          {
-            "type": "home",
-            "images": [
-              "images/retro/lazio/1999/lazio_home1.jpg"
-            ]
-          }
-        ]
-      },
-      "manchester_united": {
-        "1998": [
-          {
-            "type": "home",
-            "images": [
-              "images/retro/manchester_united/1998/manchester_united_home1.jpg",
-              "images/retro/manchester_united/1998/manchester_united_home2.jpg"
-            ]
-          }
+  "team": "retro",
+  "seasons": {
+    "1991": [
+      {
+        "team": "arsenal",
+        "type": "away",
+        "images": [
+          "images/retro/1991/arsenal/arsenal_away1.jpg",
+          "images/retro/1991/arsenal/arsenal_away2.jpg",
+          "images/retro/1991/arsenal/arsenal_away3.jpg"
         ]
       }
-    }
+    ],
+    "1996": [
+      {
+        "team": "inter_milan",
+        "type": "third",
+        "images": [
+          "images/retro/1996/inter_milan/inter_milan_third1.jpg",
+          "images/retro/1996/inter_milan/inter_milan_third2.jpg",
+          "images/retro/1996/inter_milan/inter_milan_third3.jpg",
+          "images/retro/1996/inter_milan/inter_milan_third4.jpg"
+        ]
+      }
+    ],
+    "1998": [
+      {
+        "team": "manchester_united",
+        "type": "home",
+        "images": [
+          "images/retro/1998/manchester_united/manchester_united_home1.jpg",
+          "images/retro/1998/manchester_united/manchester_united_home2.jpg"
+        ]
+      }
+    ],
+    "1999": [
+      {
+        "team": "lazio",
+        "type": "home",
+        "images": [
+          "images/retro/1999/lazio/lazio_home1.jpg"
+        ]
+      }
+    ]
   }
-  
+}
