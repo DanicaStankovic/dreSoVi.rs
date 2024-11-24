@@ -69,6 +69,7 @@ function generateDresoviBySeason(data, containerId) {
                 seasonGroups[season] = [];
             }
             seasonDresovi.forEach(item => {
+                // Филтрирање само слика које завршавају са "1"
                 const filteredImages = item.images.filter(image => image.match(/1\.(jpg|png|jpeg|webp)$/i));
                 if (filteredImages.length > 0) {
                     seasonGroups[season].push({ ...item, images: filteredImages });
@@ -112,8 +113,6 @@ function generateDresoviBySeason(data, containerId) {
         });
     });
 }
-
-// Осталe функције остају исте...
 
 
 
