@@ -78,12 +78,14 @@ function generateDresoviBySeason(data, containerId) {
         }
     }
 
-    // Сортирање сезона од најновије ка старијој, са "retro" на крају
-    const sortedSeasons = Object.keys(seasonGroups).sort((a, b) => {
-        if (a === "retro") return 1;
-        if (b === "retro") return -1;
-        return b.localeCompare(a);
-    });
+// Генерисање HTML-а за сваку сезону и дресове унутар те сезоне
+sortedSeasons.forEach(season => {
+    const seasonTitleHTML = `
+        <div class="col-12">
+            <h2 class="text-center mt-5 mb-3">Сезона ${season}//${parseInt(season) + 1}</h2>
+        </div>
+    `;
+    container.innerHTML += seasonTitleHTML;
 
     // Генерисање HTML-а за сваку сезону и дресове унутар те сезоне
     sortedSeasons.forEach(season => {
