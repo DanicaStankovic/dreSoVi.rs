@@ -1,117 +1,94 @@
-[
-  {
-    "team": "real_madrid",
-    "images": [
-      { "src": "images/klubovi/2020/real_madrid/real_madrid_third1.jpg", "type": "third", "season": "2020/2021" },
-      { "src": "images/klubovi/2020/real_madrid/real_madrid_third2.jpg", "type": "third", "season": "2020/2021" },
-      { "src": "images/klubovi/2020/real_madrid/real_madrid_third3.jpg", "type": "third", "season": "2020/2021" },
-      { "src": "images/klubovi/2024/real_madrid/real_madrid_away1.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/real_madrid/real_madrid_away2.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/real_madrid/real_madrid_home1.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/real_madrid/real_madrid_home2.jpg", "type": "home", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "inter_milan",
-    "images": [
-      { "src": "images/klubovi/2021/inter_milan/inter_milan_away1.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_milan_away2.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_milan_away3.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_milan_home1.jpg", "type": "home", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_milan_home2.jpg", "type": "home", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/inter_milan/inter_milan_home3.jpg", "type": "home", "season": "2021/2022" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_away1.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_away2.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_away3.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_away4.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_home1.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_home2.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/inter_milan/inter_milan_home3.jpg", "type": "home", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "napoli",
-    "images": [
-      { "src": "images/klubovi/2021/napoli/napoli_third1.jpg", "type": "third", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/napoli/napoli_third2.jpg", "type": "third", "season": "2021/2022" },
-      { "src": "images/klubovi/2024/napoli/napoli_home1.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/napoli/napoli_home2.jpg", "type": "home", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "porto",
-    "images": [
-      { "src": "images/klubovi/2021/porto/porto_away1.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/porto/porto_away2.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/porto/porto_away3.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2024/porto/porto_home1.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/porto/porto_home2.jpg", "type": "home", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "river_plate",
-    "images": [
-      { "src": "images/klubovi/2021/river_plate/river_plate_away1.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/river_plate/river_plate_away2.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/river_plate/river_plate_away3.jpg", "type": "away", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/river_plate/river_plate_third1.jpg", "type": "third", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/river_plate/river_plate_third2.jpg", "type": "third", "season": "2021/2022" },
-      { "src": "images/klubovi/2021/river_plate/river_plate_third3.jpg", "type": "third", "season": "2021/2022" },
-      { "src": "images/klubovi/2022/river_plate/river_plate_home1.jpg", "type": "home", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/river_plate/river_plate_home2.jpg", "type": "home", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/river_plate/river_plate_third1.jpg", "type": "third", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/river_plate/river_plate_third2.jpg", "type": "third", "season": "2022/2023" }
-    ]
-  },
-  {
-    "team": "manchester_united",
-    "images": [
-      { "src": "images/klubovi/2022/manchester_united/manchester_united_away1.jpg", "type": "away", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/manchester_united/manchester_united_away2.jpg", "type": "away", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/manchester_united/manchester_united_away3.jpg", "type": "away", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/manchester_united/manchester_united_home1.jpg", "type": "home", "season": "2022/2023" },
-      { "src": "images/klubovi/2022/manchester_united/manchester_united_home2.jpg", "type": "home", "season": "2022/2023" },
-      { "src": "images/klubovi/2024/manchester_united/manchester_united_third1.jpg", "type": "third", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/manchester_united/manchester_united_third2.jpg", "type": "third", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/manchester_united/manchester_united_third3.jpg", "type": "third", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "olympiacos",
-    "images": [
-      { "src": "images/klubovi/2023/olympiacos/olympiacos_away1.jpg", "type": "away", "season": "2023/2024" },
-      { "src": "images/klubovi/2023/olympiacos/olympiacos_away2.jpg", "type": "away", "season": "2023/2024" },
-      { "src": "images/klubovi/2023/olympiacos/olympiacos_away3.jpg", "type": "away", "season": "2023/2024" },
-      { "src": "images/klubovi/2023/olympiacos/olympiacos_home1.jpg", "type": "home", "season": "2023/2024" },
-      { "src": "images/klubovi/2023/olympiacos/olympiacos_home2.jpg", "type": "home", "season": "2023/2024" },
-      { "src": "images/klubovi/2023/olympiacos/olympiacos_home3.jpg", "type": "home", "season": "2023/2024" },
-      { "src": "images/klubovi/2024/olympiacos/olympiacos_away1.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/olympiacos/olympiacos_away2.jpg", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/olympiacos/olympiacos_home1.jpg", "type": "home", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/olympiacos/olympiacos_home2.jpg", "type": "home", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "juventus",
-    "images": [
-      { "src": "images/klubovi/2024/juventus/juventus_away1.png", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/juventus/juventus_away2.png", "type": "away", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/juventus/juventus_third1.jpg", "type": "third", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/juventus/juventus_third2.jpg", "type": "third", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "boca_juniors",
-    "images": [
-      { "src": "images/klubovi/2024/boca_juniors/boca_juniors_third1.jpg", "type": "third", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/boca_juniors/boca_juniors_third2.jpg", "type": "third", "season": "2024/2025" }
-    ]
-  },
-  {
-    "team": "lazio",
-    "images": [
-      { "src": "images/klubovi/2024/lazio/lazio_third1.jpg", "type": "third", "season": "2024/2025" },
-      { "src": "images/klubovi/2024/lazio/lazio_third2.jpg", "type": "third", "season": "2024/2025" }
-    ]
-  }
-]
+{
+  "teams": [
+    {
+      "team": "real_madrid",
+      "seasons": {
+        "2020": [
+          {
+            "type": "third",
+            "images": [
+              "images/klubovi/2020/real_madrid/real_madrid_third1.jpg",
+              "images/klubovi/2020/real_madrid/real_madrid_third2.jpg",
+              "images/klubovi/2020/real_madrid/real_madrid_third3.jpg"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "team": "inter_milan",
+      "seasons": {
+        "2021": [
+          {
+            "type": "away",
+            "images": [
+              "images/klubovi/2021/inter_milan/inter_milan_away1.jpg",
+              "images/klubovi/2021/inter_milan/inter_milan_away2.jpg",
+              "images/klubovi/2021/inter_milan/inter_milan_away3.jpg"
+            ]
+          },
+          {
+            "type": "home",
+            "images": [
+              "images/klubovi/2021/inter_milan/inter_milan_home1.jpg",
+              "images/klubovi/2021/inter_milan/inter_milan_home2.jpg",
+              "images/klubovi/2021/inter_milan/inter_milan_home3.jpg"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "team": "napoli",
+      "seasons": {
+        "2021": [
+          {
+            "type": "third",
+            "images": [
+              "images/klubovi/2021/napoli/napoli_third1.jpg",
+              "images/klubovi/2021/napoli/napoli_third2.jpg"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "team": "porto",
+      "seasons": {
+        "2021": [
+          {
+            "type": "away",
+            "images": [
+              "images/klubovi/2021/porto/porto_away1.jpg",
+              "images/klubovi/2021/porto/porto_away2.jpg",
+              "images/klubovi/2021/porto/porto_away3.jpg"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "team": "river_plate",
+      "seasons": {
+        "2021": [
+          {
+            "type": "away",
+            "images": [
+              "images/klubovi/2021/river_plate/river_plate_away1.jpg",
+              "images/klubovi/2021/river_plate/river_plate_away2.jpg",
+              "images/klubovi/2021/river_plate/river_plate_away3.jpg"
+            ]
+          },
+          {
+            "type": "third",
+            "images": [
+              "images/klubovi/2021/river_plate/river_plate_third1.jpg",
+              "images/klubovi/2021/river_plate/river_plate_third2.jpg",
+              "images/klubovi/2021/river_plate/river_plate_third3.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
