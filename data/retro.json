@@ -1,10 +1,9 @@
 {
-  "team": "retro",
   "seasons": {
     "1991": [
       {
-        "type": "away",
         "team": "arsenal",
+        "type": "away",
         "images": [
           "images/retro/1991/arsenal/arsenal_away1.jpg",
           "images/retro/1991/arsenal/arsenal_away2.jpg",
@@ -14,8 +13,8 @@
     ],
     "1996": [
       {
-        "type": "third",
         "team": "inter_milan",
+        "type": "third",
         "images": [
           "images/retro/1996/inter_milan/inter_milan_third1.jpg",
           "images/retro/1996/inter_milan/inter_milan_third2.jpg",
@@ -26,8 +25,8 @@
     ],
     "1998": [
       {
-        "type": "home",
         "team": "manchester_united",
+        "type": "home",
         "images": [
           "images/retro/1998/manchester_united/manchester_united_home1.jpg",
           "images/retro/1998/manchester_united/manchester_united_home2.jpg"
@@ -36,8 +35,8 @@
     ],
     "1999": [
       {
-        "type": "home",
         "team": "lazio",
+        "type": "home",
         "images": [
           "images/retro/1999/lazio/lazio_home1.jpg"
         ]
