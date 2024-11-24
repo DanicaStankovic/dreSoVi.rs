@@ -96,11 +96,11 @@ function generateDresoviBySeason(data, containerId) {
             item.images.forEach(image => {
                 const cardHTML = `
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <a href="dres.html?team=${data.team || item.team}&type=${item.type}&season=${season}" class="card-link">
+                        <a href="dres.html?team=${item.team}&type=${item.type}&season=${season}" class="card-link">
                             <div class="card">
-                                <img src="${image}" class="card-img-top" alt="${data.team || item.team} - ${item.type}">
+                                <img src="${image}" class="card-img-top" alt="${item.team} - ${item.type}">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">${formatTeamName(data.team || item.team)} - ${getTypeLabel(item.type)} (${season}/${parseInt(season) + 1})</h5>
+                                    <h5 class="card-title">${formatTeamName(item.team)} - ${getTypeLabel(item.type)} (${season}/${parseInt(season) + 1})</h5>
                                 </div>
                             </div>
                         </a>
@@ -131,6 +131,7 @@ function loadCart() {
         }
     }
 }
+
 
 function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -212,6 +213,7 @@ function initializeDresPage() {
 
     updatePrice(); // Постави почетну цену
 }
+
 
 // Остале функције за рад са корпом, приказ цене, и завршетак наруџбине
 function populateSizeOptions() {
