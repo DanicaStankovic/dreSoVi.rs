@@ -162,11 +162,15 @@ function loadCart() {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
         try {
+            // Parsiranje и проверавање да ли су сви подаци валидни
             cart = JSON.parse(storedCart);
-            cart.forEach(item => {
-                if (!item.price || isNaN(item.price)) {
+            cart = cart.filter(item => {
+                // Провера да ли су сва поља важећа и да ли постоји цена
+                if (item && typeof item === "object" && !isNaN(item.price) && item.size && item.name) {
+                    return true;
+                } else {
                     console.error("Неисправан артикал у корпи:", item);
-                    item.price = BASE_PRICE; // Постави подразумевану цену ако није исправна
+                    return false;
                 }
             });
         } catch (error) {
@@ -175,8 +179,6 @@ function loadCart() {
         }
     }
 }
-
-// Осталe функције остају исте...
 
 
 // Функција за учитавање и приказивање клубова из JSON-а
