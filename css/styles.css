@@ -234,6 +234,7 @@ a {
 footer {
     background-color: #343a40;
     color: #ffffff;
+    border-top: solid #e10d14;
     padding: 15px 0;
 }
 
