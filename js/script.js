@@ -274,16 +274,21 @@ function selectSize(size, event) {
 function updatePrice() {
     const printSelect = document.getElementById("pa_odabir-stampe");
     const priceElement = document.getElementById("productPrice");
-    let price = BASE_PRICE;
+    let priceText = "Цена: од 9.990,00 РСД"; // Default text
 
     if (printSelect && printSelect.value === "usluzna-stampa") {
-        price = USLUZNA_STAMPA_PRICE;
+        // Postavi cenu za uslužnu штампу
+        priceText = `Цена: ${formatPrice(USLUZNA_STAMPA_PRICE)} РСД`;
+    } else if (printSelect && printSelect.value === "bez-broja") {
+        // Postavi osnovну цену за дрес без штампе
+        priceText = `Цена: ${formatPrice(BASE_PRICE)} РСД`;
     }
 
     if (priceElement) {
-        priceElement.textContent = `Цена: ${formatPrice(price)} РСД`;
+        priceElement.textContent = priceText;
     }
 }
+
 
 function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
@@ -291,6 +296,22 @@ function handleAddToCart() {
 
     if (!validateInputs(size, selectedPrint)) {
         return;
+    }
+
+    // Provera za ime i broj kada je odabrana uslužna штампа
+    if (selectedPrint === "usluzna-stampa") {
+        const playerName = document.getElementById("playerName").value.trim();
+        const playerNumber = parseInt(document.getElementById("playerNumber").value, 10);
+
+        if (!playerName.match(/[A-Za-zА-Яа-я\s]{2,}/)) {
+            alert("Молимо унесите исправно име/презиме (минимум два слова).");
+            return;
+        }
+
+        if (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 99) {
+            alert("Молимо унесите број између 1 и 99.");
+            return;
+        }
     }
 
     const productName = document.getElementById("productTitle").textContent;
@@ -308,6 +329,7 @@ function handleAddToCart() {
     displayNotification("Производ је успешно додат у корпу!");
     updateCartCount();
 }
+
 
 function validateInputs(size, selectedPrint) {
     const sizeWarning = document.getElementById("sizeWarning");
