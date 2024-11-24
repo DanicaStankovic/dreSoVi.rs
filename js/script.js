@@ -162,15 +162,12 @@ function loadCart() {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
         try {
-            // Parsiranje и проверавање да ли су сви подаци валидни
             cart = JSON.parse(storedCart);
-            cart = cart.filter(item => {
-                // Провера да ли су сва поља важећа и да ли постоји цена
-                if (item && typeof item === "object" && !isNaN(item.price) && item.size && item.name) {
-                    return true;
-                } else {
+            cart.forEach(item => {
+                // Osigurajte da je cena broj i da nije NaN
+                if (typeof item.price !== 'number' || isNaN(item.price) || item.price <= 0) {
                     console.error("Неисправан артикал у корпи:", item);
-                    return false;
+                    item.price = BASE_PRICE; // Постави подразумевану цену ако није исправна
                 }
             });
         } catch (error) {
@@ -179,6 +176,7 @@ function loadCart() {
         }
     }
 }
+
 
 
 // Функција за учитавање и приказивање клубова из JSON-а
@@ -460,7 +458,7 @@ function removeFromCart(index) {
     updateCartDisplay(); // Ažurira prikaz korpe
 }
 
-// Funkcija za dodavanje u korpu
+// Funkcija za dodavanje u корпу
 function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
@@ -470,7 +468,13 @@ function handleAddToCart() {
     }
 
     const productName = document.getElementById("productTitle").textContent;
-    const price = parsePrice(document.getElementById("productPrice").textContent);
+    let price = parsePrice(document.getElementById("productPrice").textContent);
+
+    // Proverite da li je cena validna
+    if (typeof price !== 'number' || isNaN(price) || price <= 0) {
+        console.error("Неисправна цена за артикал, постављам подразумевану цену.");
+        price = BASE_PRICE;
+    }
 
     cart.push({ name: productName, size, price, print: selectedPrint });
     saveCart();
@@ -478,6 +482,7 @@ function handleAddToCart() {
     displayNotification("Производ је успешно додат у корпу!");
     updateCartCount();
 }
+
 
 // Funkcija za validaciju unosa
 function validateInputs(size, selectedPrint) {
