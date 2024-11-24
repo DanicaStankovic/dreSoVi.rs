@@ -134,7 +134,6 @@ function loadCart() {
     }
 }
 
-// Функција за учитавање странице дреса
 function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const team = urlParams.get("team");
@@ -151,17 +150,23 @@ function initializeDresPage() {
     fetch(jsonPath)
         .then(response => response.json())
         .then(data => {
-            const club = data.seasons[season]?.find(c => c.team === team);
+            const seasonData = data.seasons[season];
+            if (!seasonData) {
+                console.error(`Сезона ${season} није пронађена у подацима.`);
+                return;
+            }
 
-            if (club) {
-                const images = club.images.filter(img => img.type === type && img.season === season);
+            // Pronađi dres koji odgovara traženom tipu
+            const dres = seasonData.find(item => item.type === type);
+            if (dres) {
+                const images = dres.images;
 
                 if (images.length > 0) {
                     const mainImage = document.getElementById("mainImage");
                     const thumbnailsContainer = document.getElementById("thumbnails");
 
                     if (mainImage) {
-                        mainImage.src = images[0].src || "images/default.png";
+                        mainImage.src = images[0] || "images/default.png";
                         mainImage.alt = `${team} ${type} дрес`;
                     }
 
@@ -169,13 +174,13 @@ function initializeDresPage() {
                         thumbnailsContainer.innerHTML = "";
                         images.forEach(image => {
                             const thumbnail = document.createElement("img");
-                            thumbnail.src = image.src || "images/default.png";
+                            thumbnail.src = image || "images/default.png";
                             thumbnail.alt = `${team} ${type} дрес`;
                             thumbnail.className = "thumbnail-img m-1";
                             thumbnail.style.cursor = "pointer";
                             thumbnail.addEventListener("click", () => {
                                 if (mainImage) {
-                                    mainImage.src = image.src || "images/default.png";
+                                    mainImage.src = image || "images/default.png";
                                 }
                             });
                             thumbnailsContainer.appendChild(thumbnail);
@@ -184,9 +189,11 @@ function initializeDresPage() {
 
                     const productTitle = document.getElementById("productTitle");
                     if (productTitle) {
-                        productTitle.textContent = `${formatTeamName(team)} - ${getTypeLabel(type)} (${images[0].season || "Непозната сезона"})`;
+                        productTitle.textContent = `${formatTeamName(team)} - ${getTypeLabel(type)} (${season})`;
                     }
                 }
+            } else {
+                console.error(`Дрес типа ${type} за сезону ${season} није пронађен.`);
             }
         })
         .catch(error => console.error("Грешка приликом учитавања података о дресу:", error));
@@ -207,6 +214,7 @@ function initializeDresPage() {
 
     updatePrice(); // Постави почетну цену
 }
+
 
 // Функција за попуњавање опција величине
 function populateSizeOptions() {
