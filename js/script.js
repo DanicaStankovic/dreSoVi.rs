@@ -213,7 +213,6 @@ function initializeDresPage() {
     updatePrice(); // Постави почетну цену
 }
 
-
 // Остале функције за рад са корпом, приказ цене, и завршетак наруџбине
 function populateSizeOptions() {
     const sizeButtonsContainer = document.getElementById("sizeButtons");
@@ -233,6 +232,7 @@ function populateSizeOptions() {
 
 function populatePrintOptions() {
     const printSelect = document.getElementById("pa_odabir-stampe");
+    const personalizationFields = document.getElementById("personalizationFields");
     if (!printSelect) {
         console.error("Селект за штампу није пронађен.");
         return;
@@ -245,11 +245,18 @@ function populatePrintOptions() {
         printSelect.appendChild(opt);
     });
 
-    // Додај слушаоца догађаја за сакривање поруке при избору опције
+    // Додај слушаоца догађаја за приказивање/скривање поља за име и број
     printSelect.addEventListener("change", () => {
         const printWarning = document.getElementById("printWarning");
         if (printWarning && printSelect.value !== "") {
             printWarning.style.display = "none";
+        }
+
+        // Prikazivanje ili skrivanje polja za personalizaciju
+        if (printSelect.value === "usluzna-stampa") {
+            personalizationFields.style.display = "block";
+        } else {
+            personalizationFields.style.display = "none";
         }
     });
 }

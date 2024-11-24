@@ -55,7 +55,6 @@
         <!-- Product Details -->
         <div class="product_details">
             <h2 id="productTitle">Дрес за сезону 2024/25</h2>
-            <p>Нови дрес за сезону 2024/25. Аутентичан дрес.</p>
             <p><strong>Састав:</strong> 100% полиестер.</p>
             <p id="productPrice" class="font-weight-bold">Цена: од 9.990,00 РСД</p>
 
@@ -68,9 +67,19 @@
             <select id="pa_odabir-stampe" class="form-control mb-3" name="attribute_pa_odabir-stampe"></select>
             <p id="printWarning" class="warning-text" style="display: none;">Молимо изаберите врсту штампе.</p>
 
+            <!-- Fields for name and number, hidden by default -->
+            <div id="personalizationFields" style="display: none;">
+                <label for="playerName" class="mt-3">Име/Презиме:</label>
+                <input type="text" id="playerName" class="form-control mb-3" placeholder="Унесите име или презиме">
+
+                <label for="playerNumber" class="mt-3">Број:</label>
+                <input type="number" id="playerNumber" class="form-control mb-3" placeholder="Унесите број (1-99)" min="1" max="99">
+            </div>
+
             <button id="addToCartButton" class="btn btn-dark mt-3">Додај у корпу</button>
             <div id="notification" class="notification" style="display: none;">Производ је успешно додат у корпу!</div>
         </div>
+
     </section>
 
             <!-- Benefits Section -->
