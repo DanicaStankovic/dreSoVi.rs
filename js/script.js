@@ -100,7 +100,7 @@ function generateDresoviBySeason(data, containerId) {
                             <div class="card">
                                 <img src="${image}" class="card-img-top" alt="${data.team || item.team} - ${item.type}">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">${formatTeamName(data.team || item.team)} - ${getTypeLabel(item.type)} (${season})</h5>
+                                    <h5 class="card-title">${formatTeamName(data.team || item.team)} - ${getTypeLabel(item.type)} (${season}/${parseInt(season) + 1})</h5>
                                 </div>
                             </div>
                         </a>
@@ -187,7 +187,7 @@ function initializeDresPage() {
 
                     const productTitle = document.getElementById("productTitle");
                     if (productTitle) {
-                        productTitle.textContent = `${formatTeamName(team)} - ${getTypeLabel(type)} (${season})`;
+                        productTitle.textContent = `${formatTeamName(team)} - ${getTypeLabel(type)} (${season}/${parseInt(season) + 1})`;
                     }
                 }
             } else {
