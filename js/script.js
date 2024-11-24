@@ -132,7 +132,6 @@ function loadCart() {
     }
 }
 
-
 function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const team = urlParams.get("team");
@@ -155,8 +154,8 @@ function initializeDresPage() {
                 return;
             }
 
-            // Pronađи dres koji odgovara traženom tipu
-            const dres = seasonData.find(item => item.type === type);
+            // Pronađи dres koji odgovara traženom timu i tipu
+            const dres = seasonData.find(item => item.team === team && item.type === type);
             if (dres) {
                 const images = dres.images;
 
@@ -192,7 +191,7 @@ function initializeDresPage() {
                     }
                 }
             } else {
-                console.error(`Дрес типа ${type} за сезону ${season} није пронађен.`);
+                console.error(`Дрес типа ${type} за тим ${team} и сезону ${season} није пронађен.`);
             }
         })
         .catch(error => console.error("Грешка приликом учитавања података о дресу:", error));
