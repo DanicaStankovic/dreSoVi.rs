@@ -40,26 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartCount(); // Ажурирај број производа у корпи приликом иницијализације
 });
 
-// Функција за учитавање корпе из localStorage
-function loadCart() {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-        try {
-            const parsedCart = JSON.parse(storedCart);
-            cart = Array.isArray(parsedCart) ? parsedCart : [];
-            cart.forEach(item => {
-                if (!item.price || isNaN(item.price)) {
-                    console.warn("Неисправан артикал у корпи:", item);
-                    item.price = BASE_PRICE; // Постави подразумевану цену ако није исправна
-                }
-            });
-        } catch (error) {
-            console.error("Грешка при парсирању корпе из localStorage:", error);
-            cart = [];
-        }
-    }
-}
-
 // Функција за учитавање дресова Црвене Звезде из JSON-а
 function loadZvezdaDresovi() {
     fetch("data/zvezda.json")
@@ -68,16 +48,6 @@ function loadZvezdaDresovi() {
             generateDresoviBySeason(data, "zvezda-container");
         })
         .catch(error => console.error("Грешка приликом учитавања дресова Црвене Звезде:", error));
-}
-
-// Функција за учитавање ретро дресова из JSON-а
-function loadRetroDresovi() {
-    fetch("data/retro.json")
-        .then(response => response.json())
-        .then(data => {
-            generateDresoviBySeason(data, "retro-container");
-        })
-        .catch(error => console.error("Грешка приликом учитавања ретро дресова:", error));
 }
 
 // Функција за груписање и приказивање дресова по сезонама
@@ -90,49 +60,61 @@ function generateDresoviBySeason(data, containerId) {
 
     container.innerHTML = ""; // Очисти претходни садржај
 
-    // Груписање дресова по сезони
+    // Груписање дресова по сезони и филтрирање само слика које завршавају са "1"
+    const seasonGroups = {};
     for (const season in data.seasons) {
         if (data.seasons.hasOwnProperty(season)) {
             const seasonDresovi = data.seasons[season];
-
-            if (!Array.isArray(seasonDresovi)) {
-                console.error(`Очекује се да дресови за сезону ${season} буду низ.`);
-                continue;
+            if (!seasonGroups[season]) {
+                seasonGroups[season] = [];
             }
-
-            // Додај наслов за сезону
-            const seasonTitleHTML = `
-                <div class="col-12">
-                    <h2 class="text-center mt-5 mb-3">Сезона ${season}</h2>
-                </div>
-            `;
-            container.innerHTML += seasonTitleHTML;
-
-            // Додај дресове за ту сезону
             seasonDresovi.forEach(item => {
-                if (Array.isArray(item.images)) {
-                    item.images.forEach(image => {
-                        const cardHTML = `
-                            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                <a href="dres.html?team=crvena_zvezda&type=${item.type}&season=${season}" class="card-link">
-                                    <div class="card">
-                                        <img src="${image}" class="card-img-top" alt="Црвена Звезда - ${item.type}">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Црвена Звезда - ${getTypeLabel(item.type)} (${season})</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        `;
-                        container.innerHTML += cardHTML;
-                    });
-                } else {
-                    console.warn(`Очекује се да слике за дрес буду у облику низа. Прескакање...`);
+                const filteredImages = item.images.filter(image => image.match(/1\.(jpg|png|jpeg|webp)$/i));
+                if (filteredImages.length > 0) {
+                    seasonGroups[season].push({ ...item, images: filteredImages });
                 }
             });
         }
     }
+
+    // Сортирање сезона од најновије ка старијој, са "retro" на крају
+    const sortedSeasons = Object.keys(seasonGroups).sort((a, b) => {
+        if (a === "retro") return 1;
+        if (b === "retro") return -1;
+        return b.localeCompare(a);
+    });
+
+    // Генерисање HTML-а за сваку сезону и дресове унутар те сезоне
+    sortedSeasons.forEach(season => {
+        const seasonTitleHTML = `
+            <div class="col-12">
+                <h2 class="text-center mt-5 mb-3">Сезона ${season}</h2>
+            </div>
+        `;
+        container.innerHTML += seasonTitleHTML;
+
+        seasonGroups[season].forEach(item => {
+            item.images.forEach(image => {
+                const cardHTML = `
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <a href="dres.html?team=crvena_zvezda&type=${item.type}&season=${season}" class="card-link">
+                            <div class="card">
+                                <img src="${image}" class="card-img-top" alt="Црвена Звезда - ${item.type}">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Црвена Звезда - ${getTypeLabel(item.type)} (${season})</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        });
+    });
 }
+
+// Осталe функције остају исте...
+
 
 
 // Функција за ажурирање цене
