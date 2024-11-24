@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (path.includes("korpa.html")) {
         updateCartDisplay();
     } else if (path.includes("crvena-zvezda.html")) {
-        loadTeamData("data/zvezda.json", "zvezda-container");
+        loadTeamData("data/zvezda.json", "club-container");
     } else if (path.includes("retro-dresovi.html")) {
-        loadTeamData("data/retro.json", "retro-container");
+        loadTeamData("data/retro.json", "club-container");
     }
 
     const checkoutButton = document.querySelector(".checkout_button");
