@@ -141,7 +141,7 @@ function initializeDresPage() {
     let jsonPath = "data/klubovi.json";
     if (team === "crvena_zvezda") {
         jsonPath = "data/zvezda.json";
-    } else if (team === "retro") {
+    } else if (parseInt(season) < 2015) {
         jsonPath = "data/retro.json";
     }
 
@@ -154,7 +154,7 @@ function initializeDresPage() {
                 return;
             }
 
-            // Pronađи dres koji odgovara traženom timu i tipu
+            // Пронађи дрес који одговара тиму и типу
             const dres = seasonData.find(item => item.team === team && item.type === type);
             if (dres) {
                 const images = dres.images;
