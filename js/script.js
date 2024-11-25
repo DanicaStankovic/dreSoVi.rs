@@ -214,6 +214,20 @@ function initializeDresPage() {
 }
 
 // Остале функције за рад са корпом, приказ цене, и завршетак наруџбине
+
+function displayWarning(warningId, message) {
+    const warningElement = document.getElementById(warningId);
+    if (warningElement) {
+        warningElement.textContent = message;
+        warningElement.style.display = "block";
+
+        setTimeout(() => {
+            warningElement.style.display = "none";
+        }, 3000);
+    }
+}
+
+
 function populateSizeOptions() {
     const sizeButtonsContainer = document.getElementById("sizeButtons");
     if (!sizeButtonsContainer) {
@@ -298,18 +312,17 @@ function handleAddToCart() {
         return;
     }
 
-    // Provera za ime i broj kada je odabrana uslužna штампа
     if (selectedPrint === "usluzna-stampa") {
         const playerName = document.getElementById("playerName").value.trim();
         const playerNumber = parseInt(document.getElementById("playerNumber").value, 10);
 
         if (!playerName.match(/[A-Za-zА-Яа-я\s]{2,}/)) {
-            alert("Молимо унесите исправно име/презиме (минимум два слова).");
+            displayWarning("nameWarning", "Молимо унесите исправно име/презиме (минимум два слова).");
             return;
         }
 
         if (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 99) {
-            alert("Молимо унесите број између 1 и 99.");
+            displayWarning("numberWarning", "Молимо унесите број између 1 и 99.");
             return;
         }
     }
