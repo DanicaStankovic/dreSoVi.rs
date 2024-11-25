@@ -307,6 +307,7 @@ function updatePrice() {
 function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
+    const mainImageSrc = document.getElementById("mainImage").src; // Добијање путање до главне слике
 
     if (!validateInputs(size, selectedPrint)) {
         return;
@@ -336,12 +337,19 @@ function handleAddToCart() {
         price = BASE_PRICE;
     }
 
-    cart.push({ name: productName, size, price, print: selectedPrint });
+    cart.push({ 
+        name: productName, 
+        size, 
+        price, 
+        print: selectedPrint,
+        image: mainImageSrc // Додавање слике у објекат производа
+    });
     saveCart();
 
     displayNotification("Производ је успешно додат у корпу!");
     updateCartCount();
 }
+
 
 
 function validateInputs(size, selectedPrint) {
