@@ -423,7 +423,6 @@ function getTypeLabel(type) {
     }
 }
 function checkoutHandler() {
-
         const contactFormSection = document.getElementById("contactFormSection");
         if (contactFormSection) {
             contactFormSection.style.display = "block";
@@ -459,8 +458,6 @@ function checkoutHandler() {
     document.getElementById("contactFormSection").style.display = "block";
 
     displayNotification("Молимо унесите ваше податке за доставу.", "alert-info");
-}
-
 
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
