@@ -519,3 +519,34 @@ function removeFromCart(index) {
     saveCart(); // Čuva ažuriranu korpu u localStorage
     updateCartDisplay(); // Ažurira prikaz korpe
 }
+
+// Остале функције као што су loadCart(), handleAddToCart(), итд.
+
+// Додај овде функцију submitOrder()
+function submitOrder() {
+    // Добијање вредности из форме
+    const fullName = document.getElementById("fullName").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const postalCode = document.getElementById("postalCode").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const note = document.getElementById("note").value.trim();
+
+    // Валидација форме
+    if (!fullName || !address || !city || !postalCode || !phone) {
+        displayNotification("Молимо попуните сва обавезна поља.", "alert-warning");
+        return;
+    }
+
+    // Приказ потврде наруџбине
+    displayNotification("Хвала вам на поручивању! Ваша поруџбина је успешно примљена.", "alert-success");
+
+    // Брисање корпе и освежавање приказа
+    localStorage.removeItem("cart");
+    cart = [];
+    updateCartDisplay();
+
+    // Сакриј контакт форму након успешног поручивања
+    document.getElementById("contactFormSection").style.display = "none";
+}
+
