@@ -471,7 +471,7 @@ function updateCartDisplay() {
                     <div>
                         <h5>${item.name}</h5>
                         <p>Величина: ${item.size}</p>
-                        <p>Штампа: ${item.print ? item.print === "usluzna-stampa" ? "Услужна штампа" : "Без броја" : "Нема штампе"}</p>
+                        <p>Штампа: ${item.print ? (item.print === "usluzna-stampa" ? "Услужна штампа" : "Без броја") : "Нема штампе"}</p>
                         ${stampanjeDetails}
                         <p>Цена: ${formatPrice(item.price)} РСД</p>
                     </div>
@@ -487,7 +487,6 @@ function updateCartDisplay() {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
 }
-
 
 
 function removeFromCart(index) {
