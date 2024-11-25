@@ -423,6 +423,7 @@ function getTypeLabel(type) {
     }
 }
 function checkoutHandler() {
+
         const contactFormSection = document.getElementById("contactFormSection");
         if (contactFormSection) {
             contactFormSection.style.display = "block";
