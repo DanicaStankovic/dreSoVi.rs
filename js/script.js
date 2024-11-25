@@ -450,7 +450,6 @@ function displayNotification(message, type) {
 const cartItemsContainer = document.getElementById("cartItems");
 if (cart.length === 0) {
     displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
-    return ;
 }
 
 
@@ -484,7 +483,7 @@ function updateCartDisplay() {
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = "<p class='text-center'>Ваша корпа је празна.</p>";
-        document.getElementById("totalPrice").textContent = "Ukupno: 0 RSD";
+        document.getElementById("totalPrice").textContent = "Укупно: 0 РСД";
         return;
     }
 
