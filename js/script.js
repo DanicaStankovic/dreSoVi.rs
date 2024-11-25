@@ -550,7 +550,7 @@ function submitOrder() {
     
         // Validacija forme
         if (!fullName || !address || !city || !postalCode || !phone) {
-            displayNotification("Molimo popunite sva obavezna polja.", "alert-warning");
+            displayNotification("Молимо да попуните сва поља.", "alert-warning");
             return;
         }
     
