@@ -406,6 +406,9 @@ function parsePrice(priceString) {
 }
 
 function formatTeamName(teamName) {
+    if (teamName.toLowerCase() === "crvena_zvezda") {
+        return "ЦРВЕНА ЗВЕЗДА";
+    }
     return teamName.replace("_", " ").toUpperCase();
 }
 
