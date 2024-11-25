@@ -1,18 +1,15 @@
-/* General resets and styling */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Link Styling */
 a {
     text-decoration: none;
     color: inherit;
     transition: color 0.3s ease;
 }
 
-/* Navigation Bar Styling */
 .navbar {
     background-color: #343a40;
 }
@@ -26,7 +23,6 @@ a {
     color: #c9302c;
 }
 
-/* Welcome Section */
 .welcome-section {
     display: flex;
     align-items: center;
@@ -56,7 +52,6 @@ a {
     padding-bottom: 50px;
 }
 
-/* Card Styling */
 .card {
     border: none;
     box-shadow: none;
@@ -86,7 +81,6 @@ a {
     justify-content: flex-end;
 }
 
-/* Card Title Styling */
 .card-title {
     font-size: 1.2rem;
     font-weight: bold;
@@ -100,7 +94,6 @@ a {
     text-decoration: underline;
 }
 
-/* Benefits Section */
 .benefits-section .benefit-item {
     padding: 15px;
 }
@@ -110,7 +103,6 @@ a {
     margin-bottom: 10px;
 }
 
-/* Product Page Styling */
 .product_page {
     display: flex;
     flex-direction: column;
@@ -119,7 +111,6 @@ a {
     align-items: center;
 }
 
-/* Thumbnails Styling */
 .thumbnails-container {
     width: 100%;
     display: flex;
@@ -149,7 +140,6 @@ a {
     transform: scale(1.1);
 }
 
-/* Main Image Styling */
 .main_image_container {
     width: 100%;
     max-width: 400px;
@@ -165,7 +155,6 @@ a {
     max-height: 500px;
 }
 
-/* Product Details Styling */
 .product_details {
     width: 100%;
     text-align: center;
@@ -174,7 +163,6 @@ a {
     gap: 15px;
 }
 
-/* Size Buttons */
 .size-options {
     display: flex;
     flex-wrap: wrap;
@@ -199,13 +187,11 @@ a {
     color: white;
 }
 
-/* Warning Text */
 .warning-text {
     color: red;
     font-size: 14px;
 }
 
-/* Add to Cart Button */
 #addToCartButton {
     background-color: #343a40;
     color: white;
@@ -216,7 +202,6 @@ a {
     transition: background-color 0.3s ease;
 }
 
-/* Notification */
 .notification {
     background-color: green;
     color: white;
@@ -230,7 +215,6 @@ a {
     border-radius: 5px;
 }
 
-/* Footer Styling */
 footer {
     background-color: #343a40;
     color: #ffffff;
@@ -248,7 +232,6 @@ footer a:hover {
     color: #c9302c;
 }
 
-/* Desktop Screens */
 @media (min-width: 768px) {
     .product_page {
         flex-direction: row;
