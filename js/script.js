@@ -422,13 +422,38 @@ function getTypeLabel(type) {
             return ""; // Vraća prazan string za nepoznat tip
     }
 }
-
 function checkoutHandler() {
-    alert("Поруџбина је потврђена!");
-    localStorage.removeItem("cart");
-    cart = [];
-    updateCartDisplay();
+    const cartItemsContainer = document.getElementById("cartItems");
+    if (cart.length === 0) {
+        displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
+        return;
+    }
+
+
+    function displayNotification(message, type) {
+        const notification = document.getElementById("notification");
+        if (notification) {
+            notification.className = `notification alert ${type} text-center`;
+            notification.textContent = message;
+            notification.style.display = "block";
+    
+            // Аутоматски сакриј обавештење након 5 секунди
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 5000);
+        }
+    }
+    
+
+    // Сакриј секцију корпе и прикажи контакт форму
+    cartItemsContainer.style.display = "none";
+    document.getElementById("totalPrice").style.display = "none";
+    document.querySelector(".checkout_button").style.display = "none";
+    document.getElementById("contactFormSection").style.display = "block";
+
+    displayNotification("Молимо унесите ваше податке за доставу.", "alert-info");
 }
+
 
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
