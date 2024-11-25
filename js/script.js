@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Dodaj event listener za dugme za narudžbinu samo na stranici korpa.html
         const checkoutButton = document.querySelector(".checkout_button");
         if (checkoutButton) {
-            checkoutButton.addEventListener("click", submitOrder);
+            checkoutButton.addEventListener("click", checkoutHandler);
         }
     } else if (path.includes("crvena-zvezda.html")) {
         loadTeamData("data/zvezda.json", "club-container");
@@ -427,6 +427,13 @@ function getTypeLabel(type) {
     }
 }
 function checkoutHandler() {
+    // Provera da li je korpa prazna
+    if (cart.length === 0) {
+        displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
+        return; // Zaustavi izvršavanje ako je korpa prazna
+    }
+
+    // Prikazivanje kontakt forme
     const contactFormSection = document.getElementById("contactFormSection");
     if (contactFormSection) {
         contactFormSection.style.display = "block";
@@ -532,11 +539,6 @@ function removeFromCart(index) {
 }
 
 function submitOrder() {
-        // Provera da li je korpa prazna
-        if (cart.length === 0) {
-            displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
-            return; // Zaustavi izvršavanje funkcije ako je korpa prazna
-        }
     
         // Dobijanje vrednosti iz forme
         const fullName = document.getElementById("fullName").value.trim();
