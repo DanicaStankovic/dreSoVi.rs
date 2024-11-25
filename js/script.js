@@ -432,7 +432,7 @@ function checkoutHandler() {
     const cartItemsContainer = document.getElementById("cartItems");
     if (cart.length === 0) {
         displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
-        return;
+        return ;
     }
 
 

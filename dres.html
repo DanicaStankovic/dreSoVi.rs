@@ -6,16 +6,12 @@
     <title>Продавница дресова - dreSoVi.rs</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Favicon -->
     <link rel="icon" href="images/osnovne/logo.png" type="image/png">
-    <!-- SEO Description -->
     <meta name="description" content="Продавница дресова највећих клубова, са посебним избором ретро модела.">
-    <!-- FontAwesome for social icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-        <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -38,41 +34,26 @@
             </div>
         </nav>
     </header>
-
-    <!-- Product Section -->
     <section class="product_page">
-        <!-- Thumbnails Container -->
         <div class="thumbnails-container">
             <div id="thumbnails" class="thumbnails"></div>
         </div>
-
-        <!-- Main Image Container -->
         <div class="main_image_container">
-            <!-- Default image (will be replaced dynamically) -->
             <img id="mainImage" src="images/klubovi/default.png" alt="Дрес" class="main_image">
         </div>
-
-        <!-- Product Details -->
         <div class="product_details">
             <h2 id="productTitle">Дрес за сезону 2024/25</h2>
             <p><strong>Састав:</strong> 100% полиестер.</p>
             <p id="productPrice" class="font-weight-bold">Цена: од 9.990,00 РСД</p>
-
-            <!-- Buttons for sizes (dynamically generated) -->
             <div id="sizeButtons" class="size-options"></div>
             <p id="sizeWarning" class="warning-text" style="display: none;">Молимо изаберите величину дреса.</p>
-
-            <!-- Dropdown for print options -->
             <label for="pa_odabir-stampe" class="mt-3">Одaбрана штампа:</label>
             <select id="pa_odabir-stampe" class="form-control mb-3" name="attribute_pa_odabir-stampe"></select>
             <p id="printWarning" class="warning-text" style="display: none;">Молимо изаберите врсту штампе.</p>
-
-            <!-- Fields for name and number, hidden by default -->
-            <div id="personalizationFields" style="display: none;">
+                <div id="personalizationFields" style="display: none;">
                 <label for="playerName" class="mt-3">Име/Презиме:</label>
                 <input type="text" id="playerName" class="form-control mb-2" placeholder="Унесите име или презиме" pattern="[A-Za-zА-Яа-я\s]{2,}" required>
                 <p id="nameWarning" class="warning-text" style="display: none;">Молимо унесите име или презиме (минимум 2 слова).</p>
-                
                 <label for="playerNumber" class="mt-3">Број:</label>
                 <input type="number" id="playerNumber" class="form-control mb-2" placeholder="Унесите број (1-99)" min="1" max="99" required>
                 <p id="numberWarning" class="warning-text" style="display: none;">Молимо унесите исправан број (1-99).</p>
@@ -80,10 +61,7 @@
             <button id="addToCartButton" class="btn btn-dark mt-3">Додај у корпу</button>
             <div id="notification" class="notification" style="display: none;">Производ је успешно додат у корпу!</div>
         </div>
-
     </section>
-
-    <!-- Benefits Section -->
     <section class="benefits-section container my-5">
         <div class="row text-center">
             <div class="col-md-3">
@@ -116,8 +94,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
         © 2024 Владимир Стијовић - Продавница дресова - Сва права задржана.
         <div class="mt-2">
@@ -127,8 +103,6 @@
             <a href="https://www.tiktok.com" target="_blank" class="text-white"><i class="fab fa-tiktok"></i></a>
         </div>
     </footer>
-
-    <!-- Bootstrap JS and Custom Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
