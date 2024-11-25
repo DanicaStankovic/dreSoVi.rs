@@ -451,6 +451,15 @@ function updateCartDisplay() {
         total += item.price;
         const itemDiv = document.createElement("div");
         itemDiv.className = "col-12 mb-3";
+        
+        let stampanjeDetails = "";
+        if (item.print === "usluzna-stampa") {
+            stampanjeDetails = `
+                <p>Име/Презиме: ${item.playerName || "Није унето"}</p>
+                <p>Број: ${item.playerNumber || "Није унето"}</p>
+            `;
+        }
+
         itemDiv.innerHTML = `
             <div class="d-flex justify-content-between align-items-center border p-3">
                 <div class="d-flex align-items-center">
@@ -459,6 +468,7 @@ function updateCartDisplay() {
                         <h5>${item.name}</h5>
                         <p>Величина: ${item.size}</p>
                         <p>Штампа: ${item.print ? item.print === "usluzna-stampa" ? "Услужна штампа" : "Без броја" : "Нема штампе"}</p>
+                        ${stampanjeDetails}
                         <p>Цена: ${formatPrice(item.price)} РСД</p>
                     </div>
                 </div>
@@ -473,6 +483,7 @@ function updateCartDisplay() {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
 }
+
 
 
 function removeFromCart(index) {
