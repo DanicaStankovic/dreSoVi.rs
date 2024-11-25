@@ -26,19 +26,21 @@ document.addEventListener("DOMContentLoaded", function () {
         initializeDresPage();
     } else if (path.includes("korpa.html")) {
         updateCartDisplay();
+
+        // Dodaj event listener za dugme za narudžbinu samo na stranici korpa.html
+        const checkoutButton = document.querySelector(".checkout_button");
+        if (checkoutButton) {
+            checkoutButton.addEventListener("click", submitOrder);
+        }
     } else if (path.includes("crvena-zvezda.html")) {
         loadTeamData("data/zvezda.json", "club-container");
     } else if (path.includes("retro-dresovi.html")) {
         loadTeamData("data/retro.json", "club-container");
     }
 
-    const checkoutButton = document.querySelector(".checkout_button");
-    if (checkoutButton) {
-        checkoutButton.addEventListener("click", checkoutHandler);
-    }
-
     updateCartCount(); // Ažuriraj broj proizvoda u korpi prilikom inicijalizacije
 });
+
 
 // Univerzalna funkcija za učitavanje dresova iz JSON-a i prikazivanje
 function loadTeamData(jsonPath, containerId) {
@@ -445,12 +447,6 @@ function displayNotification(message, type) {
         }, 5000);
     }
 }
-
-const cartItemsContainer = document.getElementById("cartItems");
-if (cart.length === 0) {
-    displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
-}
-
 
 function displayNotification(message, type) {
     const notification = document.getElementById("notification");
