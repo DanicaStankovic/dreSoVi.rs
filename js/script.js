@@ -453,10 +453,14 @@ function updateCartDisplay() {
         itemDiv.className = "col-12 mb-3";
         itemDiv.innerHTML = `
             <div class="d-flex justify-content-between align-items-center border p-3">
-                <div>
-                    <h5>${item.name}</h5>
-                    <p>Величина: ${item.size}</p>
-                    <p>Цена: ${formatPrice(item.price)} РСД</p>
+                <div class="d-flex align-items-center">
+                    <img src="${item.image}" alt="${item.name}" style="width: 100px; height: auto; margin-right: 15px;">
+                    <div>
+                        <h5>${item.name}</h5>
+                        <p>Величина: ${item.size}</p>
+                        <p>Штампа: ${item.print ? item.print === "usluzna-stampa" ? "Услужна штампа" : "Без броја" : "Нема штампе"}</p>
+                        <p>Цена: ${formatPrice(item.price)} РСД</p>
+                    </div>
                 </div>
                 <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Уклони</button>
             </div>
@@ -469,6 +473,7 @@ function updateCartDisplay() {
         totalPriceElement.textContent = `Укупно: ${formatPrice(total)} РСД`;
     }
 }
+
 
 function removeFromCart(index) {
     cart.splice(index, 1); // Uklanja proizvod iz korpe na osnovu indeksa
