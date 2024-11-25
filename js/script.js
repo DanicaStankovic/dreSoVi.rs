@@ -303,7 +303,6 @@ function updatePrice() {
     }
 }
 
-
 function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
@@ -313,9 +312,12 @@ function handleAddToCart() {
         return;
     }
 
+    let playerName = "";
+    let playerNumber = null;
+
     if (selectedPrint === "usluzna-stampa") {
-        const playerName = document.getElementById("playerName").value.trim();
-        const playerNumber = parseInt(document.getElementById("playerNumber").value, 10);
+        playerName = document.getElementById("playerName").value.trim();
+        playerNumber = parseInt(document.getElementById("playerNumber").value, 10);
 
         if (!playerName.match(/[A-Za-zА-Яа-я\s]{2,12}/)) {
             displayWarning("nameWarning", "Молимо унесите исправно име/презиме (од 2 до 12 карактера).");
@@ -337,19 +339,21 @@ function handleAddToCart() {
         price = BASE_PRICE;
     }
 
+    // Dodaj novi proizvod u korpu sa svim podacima
     cart.push({ 
         name: productName, 
         size, 
         price, 
         print: selectedPrint,
+        playerName: selectedPrint === "usluzna-stampa" ? playerName : null,
+        playerNumber: selectedPrint === "usluzna-stampa" ? playerNumber : null,
         image: mainImageSrc // Додавање слике у објекат производа
     });
-    saveCart();
 
+    saveCart();
     displayNotification("Производ је успешно додат у корпу!");
     updateCartCount();
 }
-
 
 
 function validateInputs(size, selectedPrint) {
