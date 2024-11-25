@@ -317,8 +317,8 @@ function handleAddToCart() {
         const playerName = document.getElementById("playerName").value.trim();
         const playerNumber = parseInt(document.getElementById("playerNumber").value, 10);
 
-        if (!playerName.match(/[A-Za-zА-Яа-я\s]{2,}/)) {
-            displayWarning("nameWarning", "Молимо унесите исправно име/презиме (минимум два слова).");
+        if (!playerName.match(/[A-Za-zА-Яа-я\s]{2,12}/)) {
+            displayWarning("nameWarning", "Молимо унесите исправно име/презиме (од 2 до 12 карактера).");
             return;
         }
 
