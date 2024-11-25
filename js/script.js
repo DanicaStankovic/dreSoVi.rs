@@ -239,7 +239,7 @@ function populateSizeOptions() {
 
     SIZE_OPTIONS.forEach(size => {
         const button = document.createElement("button");
-        button.className = "size-button";
+        button.className = "btn btn-primary";
         button.textContent = size;
         button.addEventListener("click", event => selectSize(size, event));
         sizeButtonsContainer.appendChild(button);
