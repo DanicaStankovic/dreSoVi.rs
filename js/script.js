@@ -502,8 +502,8 @@ function updateCartDisplay() {
         let stampanjeDetails = "";
         if (item.print === "usluzna-stampa") {
             stampanjeDetails = `
-                <p>Ime/Prezime: ${item.playerName 
-                        <p>Broj: ${item.playerNumber}</p>
+                <p>Ime/Prezime: ${item.playerName}</p>
+                <p>Broj: ${item.playerNumber}</p>
             `;
         }
 
@@ -518,8 +518,9 @@ function updateCartDisplay() {
                         ${stampanjeDetails}
                         <p>Cena: ${formatPrice(item.price)} RSD</p>
                     </div>
-                <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Ukloni</button>
                 </div>
+                <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Ukloni</button>
+            </div>
         `;
         cartItemsContainer.appendChild(itemDiv);
     });
@@ -563,4 +564,4 @@ function submitOrder() {
 
     // Sakrij kontakt formu nakon uspešnog poručivanja
     document.getElementById("contactFormSection").style.display = "none";
-}
+}}
