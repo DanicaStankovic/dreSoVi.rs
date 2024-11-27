@@ -134,7 +134,6 @@ function loadCart() {
     }
 }
 
-
 function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const team = urlParams.get("team");
@@ -163,21 +162,30 @@ function initializeDresPage() {
                 const images = dres.images;
 
                 if (images.length > 0) {
-                    const swiperWrapper = document.getElementById("swiper-wrapper");
+                    const mainImage = document.getElementById("mainImage");
+                    const thumbnailsContainer = document.getElementById("thumbnails");
 
-                    // Očisti prethodni sadržaj Swiper wrappera
-                    swiperWrapper.innerHTML = "";
+                    if (mainImage) {
+                        mainImage.src = images[0] || "images/default.png";
+                        mainImage.alt = `${team} ${type} дрес`;
+                    }
 
-                    // Dinamičko dodavanje slika u Swiper
-                    images.forEach(image => {
-                        const slideDiv = document.createElement("div");
-                        slideDiv.className = "swiper-slide";
-                        slideDiv.innerHTML = `<img src="${image}" alt="${team} ${type} дрес">`;
-                        swiperWrapper.appendChild(slideDiv);
-                    });
-
-                    // Inicijalizujte ili ponovo inicijalizujte Swiper nakon dodavanja slika
-                    initializeSwiper();
+                    if (thumbnailsContainer) {
+                        thumbnailsContainer.innerHTML = "";
+                        images.forEach(image => {
+                            const thumbnail = document.createElement("img");
+                            thumbnail.src = image || "images/default.png";
+                            thumbnail.alt = `${team} ${type} дрес`;
+                            thumbnail.className = "thumbnail-img m-1";
+                            thumbnail.style.cursor = "pointer";
+                            thumbnail.addEventListener("click", () => {
+                                if (mainImage) {
+                                    mainImage.src = image || "images/default.png";
+                                }
+                            });
+                            thumbnailsContainer.appendChild(thumbnail);
+                        });
+                    }
 
                     const productTitle = document.getElementById("productTitle");
                     if (productTitle) {
@@ -206,7 +214,6 @@ function initializeDresPage() {
 
     updatePrice(); // Postavi početnu cenu
 }
-
 
 // Ostale funkcije za rad sa korpom, prikaz cene, i završetak narudžbine
 
@@ -559,22 +566,3 @@ function submitOrder() {
         document.getElementById("contactFormSection").style.display = "none";
     }
     
-
-    let swiper = null;
-
-function initializeSwiper() {
-    if (swiper) {
-        swiper.destroy(); // Uništite postojeći swiper pre inicijalizacije novog
-    }
-    swiper = new Swiper(".mySwiper", {
-        loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-    });
-}
