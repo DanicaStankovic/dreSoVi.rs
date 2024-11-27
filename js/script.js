@@ -418,18 +418,20 @@ displayNotification("Ваша корпа је празна. Молимо дод�
 function displayNotification(message, type, elementId = "notification") {
     const notification = document.getElementById(elementId);
     if (notification) {
-        notification.className = `notification alert ${type} text-center`;
+        // Postavite klasu za stil i dodajte poruku
+        notification.className = notification alert ${type} text-center;
         notification.textContent = message;
-        notification.style.visibility = "visible";
+        notification.style.display = "block";
         notification.style.opacity = "1";
         setTimeout(() => {
             notification.style.opacity = "0";
             setTimeout(() => {
-                notification.style.visibility = "hidden";
+                notification.style.display = "none";
             }, 500); 
         }, 3000);
     }
 }
+
 
 
 function updateCartDisplay() {
