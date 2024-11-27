@@ -410,8 +410,8 @@ function getTypeLabel(type) {
 function checkoutHandler() {
     // Provera da li je korpa prazna
     if (cart.length === 0) {
-        displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning");
-        return; // Zaustavi izvršavanje ako je korpa prazna
+displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning", "notificationCart");
+    return; // Zaustavi izvršavanje ako je korpa prazna
     }
 
     // Prikazivanje kontakt forme
@@ -421,20 +421,18 @@ function checkoutHandler() {
     }
 }
 
-
-function displayNotification(message, type) {
-    const notification = document.getElementById("notification");
+function displayNotification(message, type, elementId = "notification") {
+    const notification = document.getElementById(elementId);
     if (notification) {
         notification.className = `notification alert ${type} text-center`;
         notification.textContent = message;
         notification.style.display = "block";
-
-        // Аутоматски сакриј обавештење након 5 секунди
         setTimeout(() => {
             notification.style.display = "none";
         }, 3000);
     }
 }
+
 
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
