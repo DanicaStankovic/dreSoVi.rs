@@ -421,21 +421,17 @@ function displayNotification(message, type, elementId = "notification") {
         // Postavite klasu za stil i dodajte poruku
         notification.className = `notification alert ${type} text-center`;
         notification.textContent = message;
-        notification.classList.add("show");
+        notification.style.display = "block";
+        notification.style.opacity = "1";
         setTimeout(() => {
-            notification.classList.remove("show");
+            notification.style.opacity = "0";
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 500); 
         }, 3000);
-        // Event listener za kada se animacija završi
-        notification.addEventListener('transitionend', () => {
-            if (!notification.classList.contains("show")) {
-                // Kada je animacija završena i notifikacija nije prikazana (`opacity: 0`), sklonite je
-                notification.style.pointerEvents = "none"; // Sprečava klikove kada je nevidljivo
-            } else {
-                notification.style.pointerEvents = "auto"; // Dozvoljava klikove kada je vidljivo
-            }
-        });
     }
 }
+
 
 
 function updateCartDisplay() {
