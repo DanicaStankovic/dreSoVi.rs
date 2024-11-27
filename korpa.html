@@ -48,27 +48,27 @@
         <form id="deliveryForm">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Пуно име:</label>
-                <input type="text" id="fullName" class="form-control" required minlength="2" pattern="[A-Za-zА-Яа-я\s]{2,50}" title="Молимо унесите најмање 2 слова.">
+                <input type="text" id="fullName" class="form-control" required minlength="2" pattern="[A-Za-zА-Яа-я\s]{2,50}" title="Молимо унесите најмање 2 слова." placeholder="Пуно име и презиме">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Адреса:</label>
-                <input type="text" id="address" class="form-control" required minlength="5" pattern="[A-Za-zА-Яа-я0-9\s,.-]{5,100}" title="Адреса мора садржати најмање 5 карактера.">
+                <input type="text" id="address" class="form-control" required minlength="5" pattern="[A-Za-zА-Яа-я0-9\s,.-]{5,100}" title="Адреса мора садржати најмање 5 карактера." placeholder="Улица и број">
             </div>
             <div class="mb-3">
                 <label for="city" class="form-label">Град:</label>
-                <input type="text" id="city" class="form-control" required minlength="2" pattern="[A-Za-zА-Яа-я\s]{2,50}" title="Молимо унесите најмање 2 слова.">
+                <input type="text" id="city" class="form-control" required minlength="2" pattern="[A-Za-zА-Яа-я\s]{2,50}" title="Молимо унесите најмање 2 слова." placeholder="Назив града">
             </div>
             <div class="mb-3">
                 <label for="postalCode" class="form-label">Поштански број:</label>
-                <input type="text" id="postalCode" class="form-control" pattern="[0-9]{5}" required title="Поштански број мора садржати 5 цифара.">
+                <input type="text" id="postalCode" class="form-control" pattern="[0-9]{5}" required title="Поштански број мора садржати 5 цифара." placeholder="Поштански број (нпр. 11000)">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Телефон:</label>
-                <input type="tel" id="phone" class="form-control" pattern="[0-9]{9,10}" required title="Телефонски број мора садржати 9 до 10 цифара.">
+                <input type="tel" id="phone" class="form-control" pattern="[0-9]{9,10}" required title="Телефонски број мора садржати 9 до 10 цифара." placeholder="Телефонски број (нпр. 061234567)">
             </div>
             <div class="mb-3">
                 <label for="note" class="form-label">Напомена:</label>
-                <textarea id="note" class="form-control" rows="3" minlength="5" maxlength="500" title="Напомена мора садржати најмање 5 карактера."></textarea>
+                <textarea id="note" class="form-control" rows="3" minlength="5" maxlength="500" title="Напомена мора садржати најмање 5 карактера." placeholder="Додатне напомене за доставу (опционо)"></textarea>
             </div>
             <div class="text-center mt-4">
                 <button type="button" class="btn btn-success checkout_button" onclick="submitOrder()">Пошаљите поруџбину</button>
