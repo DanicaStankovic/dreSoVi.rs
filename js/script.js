@@ -295,39 +295,29 @@ function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
     const mainImageSrc = document.querySelector(".swiper-slide img")?.src || "";
-
     if (!validateInputs(size, selectedPrint)) {
         return;
     }
-
     let playerName = "";
     let playerNumber = null;
-
     if (selectedPrint === "usluzna-stampa") {
         playerName = document.getElementById("playerName").value.trim();
         playerNumber = parseInt(document.getElementById("playerNumber").value, 10);
-
         if (!playerName.match(/[A-Za-zА-Яа-я\s]{2,12}/)) {
             displayWarning("nameWarning", "Молимо унесите исправно име/презиме (од 2 до 12 карактера).");
             return;
         }
-
         if (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 99) {
             displayWarning("numberWarning", "Молимо унесите број између 1 и 99.");
             return;
         }
     }
-
     const productName = document.getElementById("productTitle").textContent;
     let price = parsePrice(document.getElementById("productPrice").textContent);
-
-    // Proverite da li je cena validna
     if (typeof price !== 'number' || isNaN(price) || price <= 0) {
         console.error("Neispravna cena za artikal, postavljam podrazumevanu cenu.");
         price = BASE_PRICE;
     }
-
-    // Dodaj novi proizvod u korpu sa svim podacima
     cart.push({ 
         name: productName, 
         size, 
@@ -335,12 +325,34 @@ function handleAddToCart() {
         print: selectedPrint,
         playerName: selectedPrint === "usluzna-stampa" ? playerName : null,
         playerNumber: selectedPrint === "usluzna-stampa" ? playerNumber : null,
-        image: mainImageSrc // Dodavanje slike u objekat proizvoda
+        image: mainImageSrc
     });
-
     saveCart();
     displayNotification("Производ је успешно додат у корпу!");
     updateCartCount();
+    resetProductForm();
+}
+
+function resetProductForm() {
+    const sizeButtons = document.querySelectorAll(".size-button.selected");
+    sizeButtons.forEach(button => button.classList.remove("selected"));
+    const printSelect = document.getElementById("pa_odabir-stampe");
+    if (printSelect) {
+        printSelect.value = ""; // Vraća na prvu (default) opciju
+    }
+    const personalizationFields = document.getElementById("personalizationFields");
+    if (personalizationFields) {
+        personalizationFields.style.display = "none";
+    }
+    const playerNameInput = document.getElementById("playerName");
+    if (playerNameInput) {
+        playerNameInput.value = "";
+    }
+    const playerNumberInput = document.getElementById("playerNumber");
+    if (playerNumberInput) {
+        playerNumberInput.value = "";
+    }
+    updatePrice();
 }
 
 
