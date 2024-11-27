@@ -198,10 +198,11 @@ a {
     transform: translate(-50%, -50%);
     border-radius: 5px;
     z-index: 9999;
-    opacity: 0;
+    display: none;
+    opacity: 0; 
     transition: opacity 0.5s ease-in-out;
-    pointer-events: none; 
 }
+
 
 .notification.show {
     opacity: 1;
