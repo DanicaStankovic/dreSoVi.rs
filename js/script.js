@@ -426,13 +426,20 @@ function displayNotification(message, type, elementId = "notification") {
     if (notification) {
         notification.className = `notification alert ${type} text-center`;
         notification.textContent = message;
-        notification.style.display = "block";
+        notification.style.display = "block"; 
+        notification.classList.add("show");
+
         setTimeout(() => {
-            notification.style.display = "none";
-        }, 3000);
+            notification.classList.remove("show");
+        }, 3000);  // Poruka ostaje vidljiva 3 sekunde
+
+        notification.addEventListener('transitionend', () => {
+            if (!notification.classList.contains("show")) {
+                notification.style.display = "none"; 
+            }
+        });
     }
 }
-
 
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
