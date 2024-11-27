@@ -532,7 +532,8 @@ function submitOrder() {
         }
         
         // Prikaz potvrde narudžbine
-        displayNotification("Хвала вам на поручивању! Ваша поруџбина је успешно примљена.", "alert-success");
+        displayNotification("Хвала вам на поручивању! Ваша поруџбина је успешно примљена.", "alert-success", "notificationCart");
+
     
         // Brisanje korpe i osvežavanje prikaza
         localStorage.removeItem("cart");
