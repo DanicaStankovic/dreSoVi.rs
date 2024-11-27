@@ -1,11 +1,9 @@
-// Inicijacija korpe
 let cart = [];
 
-// Konstantne vrednosti za cene
 const BASE_PRICE = 9990;
 const USLUZNA_STAMPA_PRICE = 11490;
 
-// Dostupne veličine i opcije štampe
+
 const SIZE_OPTIONS = ["XS", "S", "M", "L", "XL", "XXL"];
 const PRINT_OPTIONS = [
     { value: "", text: "Одаберите опцију" },
@@ -13,11 +11,10 @@ const PRINT_OPTIONS = [
     { value: "usluzna-stampa", text: "Услужна штампа" },
 ];
 
-// Učitavanje korpe iz localStorage
+
 document.addEventListener("DOMContentLoaded", function () {
     loadCart();
 
-    // Učitaj stranice na osnovu URL-a
     const path = window.location.pathname;
 
     if (path.includes("klubovi.html")) {
@@ -206,9 +203,6 @@ function initializeDresPage() {
 
     updatePrice(); // Postavi početnu cenu
 }
-
-
-// Ostale funkcije za rad sa korpom, prikaz cene, i završetak narudžbine
 
 function displayWarning(warningId, message) {
     const warningElement = document.getElementById(warningId);
