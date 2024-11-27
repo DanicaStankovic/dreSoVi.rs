@@ -418,22 +418,25 @@ displayNotification("Ваша корпа је празна. Молимо дод�
 function displayNotification(message, type, elementId = "notification") {
     const notification = document.getElementById(elementId);
     if (notification) {
+        // Postavite klasu za stil i dodajte poruku
         notification.className = `notification alert ${type} text-center`;
         notification.textContent = message;
-        notification.style.display = "block"; 
         notification.classList.add("show");
-
         setTimeout(() => {
             notification.classList.remove("show");
-        }, 3000);  // Poruka ostaje vidljiva 3 sekunde
-
+        }, 3000);
+        // Event listener za kada se animacija završi
         notification.addEventListener('transitionend', () => {
             if (!notification.classList.contains("show")) {
-                notification.style.display = "none"; 
+                // Kada je animacija završena i notifikacija nije prikazana (`opacity: 0`), sklonite je
+                notification.style.pointerEvents = "none"; // Sprečava klikove kada je nevidljivo
+            } else {
+                notification.style.pointerEvents = "auto"; // Dozvoljava klikove kada je vidljivo
             }
         });
     }
 }
+
 
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
