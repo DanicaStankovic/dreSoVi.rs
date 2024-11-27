@@ -418,20 +418,18 @@ displayNotification("Ваша корпа је празна. Молимо дод�
 function displayNotification(message, type, elementId = "notification") {
     const notification = document.getElementById(elementId);
     if (notification) {
-        // Postavite klasu za stil i dodajte poruku
         notification.className = `notification alert ${type} text-center`;
         notification.textContent = message;
-        notification.style.display = "block";
+        notification.style.visibility = "visible";
         notification.style.opacity = "1";
         setTimeout(() => {
             notification.style.opacity = "0";
             setTimeout(() => {
-                notification.style.display = "none";
+                notification.style.visibility = "hidden";
             }, 500); 
         }, 3000);
     }
 }
-
 
 
 function updateCartDisplay() {
@@ -500,51 +498,39 @@ function removeFromCart(index) {
 }
 
 function submitOrder() {
-    
-        // Dobijanje vrednosti iz forme
-        const fullName = document.getElementById("fullName").value.trim();
-        const address = document.getElementById("address").value.trim();
-        const city = document.getElementById("city").value.trim();
-        const postalCode = document.getElementById("postalCode").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const note = document.getElementById("note").value.trim();
-    
-        // Validacija forme
-        if (fullName.length < 2) {
-            displayNotification("Молимо унесите пуно име (минимум 2 карактера).", "alert-warning");
-            return;
-        }
-        if (address.length < 5) {
-            displayNotification("Адреса мора имати најмање 5 карактера.", "alert-warning");
-            return;
-        }
-        if (city.length < 2) {
-            displayNotification("Град мора имати најмање 2 карактера.", "alert-warning");
-            return;
-        }
-        if (!postalCode.match(/^\d{5}$/)) {
-            displayNotification("Поштански број мора садржати тачно 5 цифара.", "alert-warning");
-            return;
-        }
-        if (!phone.match(/^\d{9,10}$/)) {
-            displayNotification("Телефонски број мора садржати између 9 и 10 цифара.", "alert-warning");
-            return;
-        }
-        
-        // Prikaz potvrde narudžbine
-        displayNotification("Хвала вам на поручивању! Ваша поруџбина је успешно примљена.", "alert-success", "notificationCart");
-
-    
-        // Brisanje korpe i osvežavanje prikaza
-        localStorage.removeItem("cart");
-        cart = [];
-        updateCartDisplay();
-    
-        // Sakrij kontakt formu nakon uspešnog poručivanja
-        document.getElementById("contactFormSection").style.display = "none";
+    const fullName = document.getElementById("fullName").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const postalCode = document.getElementById("postalCode").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    if (fullName.length < 2) {
+        displayNotification("Молимо унесите пуно име (минимум 2 карактера).", "alert-warning", "notificationCart");
+        return;
     }
-    
+    if (address.length < 5) {
+        displayNotification("Адреса мора имати најмање 5 карактера.", "alert-warning", "notificationCart");
+        return;
+    }
+    if (city.length < 2) {
+        displayNotification("Град мора имати најмање 2 карактера.", "alert-warning", "notificationCart");
+        return;
+    }
+    if (!postalCode.match(/^\d{5}$/)) {
+        displayNotification("Поштански број мора садржати тачно 5 цифара.", "alert-warning", "notificationCart");
+        return;
+    }
+    if (!phone.match(/^\d{9,10}$/)) {
+        displayNotification("Телефонски број мора садржати између 9 и 10 цифара.", "alert-warning", "notificationCart");
+        return;
+    }
+    displayNotification("Хвала вам на поручивању! Ваша поруџбина је успешно примљена.", "alert-success", "notificationCart");
 
+    localStorage.removeItem("cart");
+    cart = [];
+    updateCartDisplay();
+    document.getElementById("contactFormSection").style.display = "none";
+}
+  
     let swiper = null;
 
 function initializeSwiper() {
