@@ -198,6 +198,13 @@ a {
     transform: translate(-50%, -50%);
     border-radius: 5px;
     z-index: 9999;
+    transition: opacity 0.5s ease-in-out; 
+    opacity: 0; 
+}
+
+.notification.show {
+    display: block; 
+    opacity: 1;
 }
 
 footer {
