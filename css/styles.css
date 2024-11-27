@@ -126,7 +126,7 @@ a {
 }
 
 .swiper-slide img {
-    width: auto;
+    width: 100%;
     height: auto;
     max-height: 90vh; 
     object-fit: contain;
