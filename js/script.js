@@ -419,7 +419,7 @@ function displayNotification(message, type, elementId = "notification") {
     const notification = document.getElementById(elementId);
     if (notification) {
         // Postavite klasu za stil i dodajte poruku
-        notification.className = notification alert ${type} text-center;
+        notification.className = `notification alert ${type} text-center`;
         notification.textContent = message;
         notification.style.display = "block";
         notification.style.opacity = "1";
