@@ -566,15 +566,18 @@ function initializeSwiper() {
     if (swiper) {
         swiper.destroy(); // Uništite postojeći swiper pre inicijalizacije novog
     }
-    swiper = new Swiper(".mySwiper", {
-        loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-    });
+    const swiperContainer = document.querySelector(".mySwiper");
+    if (swiperContainer) {
+        swiper = new Swiper(swiperContainer, {
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    }
 }
