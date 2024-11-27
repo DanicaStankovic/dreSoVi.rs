@@ -132,14 +132,6 @@ a {
     object-fit: contain;
 }
 
-.thumbnails-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
 .main_image_container {
     width: 100%;
     display: flex;
@@ -205,6 +197,7 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
+    z-index: 9999;
 }
 
 footer {
