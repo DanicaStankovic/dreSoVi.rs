@@ -369,18 +369,6 @@ function validateInputs(size, selectedPrint) {
     return size && selectedPrint;
 }
 
-function displayNotification(message) {
-    const notification = document.getElementById("notification");
-    if (notification) {
-        notification.textContent = message;
-        notification.style.display = "block";
-
-        setTimeout(() => {
-            notification.style.display = "none";
-        }, 3000);
-    }
-}
-
 function updateCartCount() {
     const cartCountElement = document.getElementById("cart-count");
     if (cartCountElement) {
@@ -444,7 +432,7 @@ function displayNotification(message, type) {
         // Аутоматски сакриј обавештење након 5 секунди
         setTimeout(() => {
             notification.style.display = "none";
-        }, 5000);
+        }, 3000);
     }
 }
 
