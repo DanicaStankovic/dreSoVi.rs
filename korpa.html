@@ -45,18 +45,18 @@
     </section>
     <section id="contactFormSection" class="container mt-5" style="display: none;">
         <h2 class="text-center mb-4">Унесите податке за доставу</h2>
-        <form>
+        <form id="deliveryForm">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Пуно име:</label>
-                <input type="text" id="fullName" class="form-control" required minlength="2" maxlength="50">
+                <input type="text" id="fullName" class="form-control" required minlength="2" pattern="[A-Za-zА-Яа-я\s]{2,50}" title="Молимо унесите најмање 2 слова.">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Адреса:</label>
-                <input type="text" id="address" class="form-control" required minlength="5" maxlength="100">
+                <input type="text" id="address" class="form-control" required minlength="5" pattern="[A-Za-zА-Яа-я0-9\s,.-]{5,100}" title="Адреса мора садржати најмање 5 карактера.">
             </div>
             <div class="mb-3">
                 <label for="city" class="form-label">Град:</label>
-                <input type="text" id="city" class="form-control" required minlength="2" maxlength="50">
+                <input type="text" id="city" class="form-control" required minlength="2" pattern="[A-Za-zА-Яа-я\s]{2,50}" title="Молимо унесите најмање 2 слова.">
             </div>
             <div class="mb-3">
                 <label for="postalCode" class="form-label">Поштански број:</label>
@@ -68,13 +68,14 @@
             </div>
             <div class="mb-3">
                 <label for="note" class="form-label">Напомена:</label>
-                <textarea id="note" class="form-control" rows="3"></textarea>
+                <textarea id="note" class="form-control" rows="3" minlength="5" maxlength="500" title="Напомена мора садржати најмање 5 карактера."></textarea>
             </div>
             <div class="text-center mt-4">
                 <button type="button" class="btn btn-success checkout_button" onclick="submitOrder()">Пошаљите поруџбину</button>
             </div>
         </form>
     </section>
+    
     <section class="benefits-section container my-5">
         <div class="row text-center">
             <div class="col-md-3">
