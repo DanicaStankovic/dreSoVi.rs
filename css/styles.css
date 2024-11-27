@@ -198,7 +198,7 @@ a {
     transform: translate(-50%, -50%);
     border-radius: 5px;
     z-index: 9999;
-    display: none;
+    display: none; 
     opacity: 0; 
     transition: opacity 0.5s ease-in-out;
 }
