@@ -279,10 +279,8 @@ function updatePrice() {
     const priceElement = document.getElementById("productPrice");
     let priceText = "Цена: од 9.990,00 РСД"; // Default text
     if (printSelect && printSelect.value === "usluzna-stampa") {
-        // Postavi cenu za uslužnu štampu
         priceText = `Цена: ${formatPrice(USLUZNA_STAMPA_PRICE)} РСД`;
     } else if (printSelect && printSelect.value === "bez-broja") {
-        // Postavi osnovnu cenu za dres bez štampe
         priceText = `Цена: ${formatPrice(BASE_PRICE)} РСД`;
     }
 
@@ -312,12 +310,13 @@ function handleAddToCart() {
             return;
         }
     }
+
     const productName = document.getElementById("productTitle").textContent;
     let price = parsePrice(document.getElementById("productPrice").textContent);
-    if (typeof price !== 'number' || isNaN(price) || price <= 0) {
-        console.error("Neispravna cena za artikal, postavljam podrazumevanu cenu.");
+    if (isNaN(price) || price <= 0) {
         price = BASE_PRICE;
     }
+
     cart.push({ 
         name: productName, 
         size, 
@@ -419,11 +418,10 @@ function checkoutHandler() {
 displayNotification("Ваша корпа је празна. Молимо додајте производе у корпу пре поручивања.", "alert-warning", "notificationCart");
     return; // Zaustavi izvršavanje ako je korpa prazna
     }
-
-    // Prikazivanje kontakt forme
     const contactFormSection = document.getElementById("contactFormSection");
     if (contactFormSection) {
         contactFormSection.style.display = "block";
+        contactFormSection.scrollIntoView({ behavior: "smooth" });
     }
 }
 
