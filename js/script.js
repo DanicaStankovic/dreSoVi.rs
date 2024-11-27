@@ -116,12 +116,13 @@ function generateDresoviBySeason(data, containerId) {
 
 // Funkcija za učitavanje korpe iz localStorage
 function loadCart() {
+    cart = [];
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
         try {
             cart = JSON.parse(storedCart);
             cart.forEach(item => {
-                // Osiguraj da je cena broj i da nije NaN
+            // Osiguraj da je cena broj i da nije NaN
                 if (typeof item.price !== 'number' || isNaN(item.price) || item.price <= 0) {
                     console.error("Neispravan artikal u korpi:", item);
                     item.price = BASE_PRICE; // Postavi podrazumevanu cenu ako nije ispravna
@@ -133,7 +134,6 @@ function loadCart() {
         }
     }
 }
-
 
 function initializeDresPage() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -300,7 +300,7 @@ function updatePrice() {
 function handleAddToCart() {
     const size = document.querySelector(".size-button.selected")?.textContent || null;
     const selectedPrint = document.getElementById("pa_odabir-stampe")?.value || "";
-    const mainImageSrc = document.getElementById("mainImage").src; // Dobijanje putanje do glavne slike
+    const mainImageSrc = document.querySelector(".swiper-slide img")?.src || "";
 
     if (!validateInputs(size, selectedPrint)) {
         return;
@@ -448,24 +448,6 @@ function displayNotification(message, type) {
     }
 }
 
-function displayNotification(message, type) {
-    const notification = document.getElementById("notification");
-    if (notification) {
-        notification.className = `notification alert ${type} text-center`;
-        notification.textContent = message;
-        notification.style.display = "block";
-
-        // Аутоматски сакриј обавештење након 5 секунди
-        setTimeout(() => {
-            notification.style.display = "none";
-        }, 5000);
-    }
-    const contactFormSection = document.getElementById("contactFormSection");
-    if (contactFormSection) {
-        contactFormSection.style.display = "block";
-    }
-}
-
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById("cartItems");
     if (!cartItemsContainer) {
@@ -542,11 +524,27 @@ function submitOrder() {
         const note = document.getElementById("note").value.trim();
     
         // Validacija forme
-        if (!fullName || !address || !city || !postalCode || !phone) {
-            displayNotification("Молимо да попуните сва поља.", "alert-warning");
+        if (fullName.length < 2) {
+            displayNotification("Молимо унесите пуно име (минимум 2 карактера).", "alert-warning");
             return;
         }
-    
+        if (address.length < 5) {
+            displayNotification("Адреса мора имати најмање 5 карактера.", "alert-warning");
+            return;
+        }
+        if (city.length < 2) {
+            displayNotification("Град мора имати најмање 2 карактера.", "alert-warning");
+            return;
+        }
+        if (!postalCode.match(/^\d{5}$/)) {
+            displayNotification("Поштански број мора садржати тачно 5 цифара.", "alert-warning");
+            return;
+        }
+        if (!phone.match(/^\d{9,10}$/)) {
+            displayNotification("Телефонски број мора садржати између 9 и 10 цифара.", "alert-warning");
+            return;
+        }
+        
         // Prikaz potvrde narudžbine
         displayNotification("Хвала вам на поручивању! Ваша поруџбина је успешно примљена.", "alert-success");
     
