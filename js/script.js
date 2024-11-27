@@ -562,10 +562,6 @@ function submitOrder() {
 
     let swiper = null;
 
-function initializeSwiper() {
-    if (swiper) {
-        swiper.destroy(); // Uništite postojeći swiper pre inicijalizacije novog
-    }
     swiper = new Swiper(".mySwiper", {
         loop: true,
         navigation: {
@@ -576,7 +572,9 @@ function initializeSwiper() {
             el: ".swiper-pagination",
             clickable: true,
         },
+        slideToClickedSlide: false,
     });
+    
 }
 
 if (images.length > 0) {
