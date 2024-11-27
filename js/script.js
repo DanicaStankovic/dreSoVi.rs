@@ -574,8 +574,6 @@ function submitOrder() {
         },
         slideToClickedSlide: false,
     });
-    
-}
 
 if (images.length > 0) {
     const swiperWrapper = document.getElementById("swiper-wrapper");
