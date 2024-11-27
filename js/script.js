@@ -562,6 +562,10 @@ function submitOrder() {
 
     let swiper = null;
 
+function initializeSwiper() {
+    if (swiper) {
+        swiper.destroy(); // Uništite postojeći swiper pre inicijalizacije novog
+    }
     swiper = new Swiper(".mySwiper", {
         loop: true,
         navigation: {
@@ -572,25 +576,5 @@ function submitOrder() {
             el: ".swiper-pagination",
             clickable: true,
         },
-        slideToClickedSlide: false,
     });
-
-if (images.length > 0) {
-    const swiperWrapper = document.getElementById("swiper-wrapper");
-
-    if (swiperWrapper) {
-        swiperWrapper.innerHTML = ""; // Očistite prethodne slike
-        images.forEach(image => {
-            const slide = document.createElement("div");
-            slide.className = "swiper-slide";
-            slide.innerHTML = `
-                <a href="${image}" data-lightbox="dres-gallery">
-                    <img src="${image}" alt="${team} ${type} дрес">
-                </a>`;
-            swiperWrapper.appendChild(slide);
-        });
-
-        // Nakon dodavanja slika, ponovo inicijalizujte Swiper
-        initializeSwiper();
-    }
 }
